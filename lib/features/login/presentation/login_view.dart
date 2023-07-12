@@ -30,6 +30,7 @@ class loginView extends StatelessWidget {
                 ),
               ],
             ),
+            Spacer(flex: 1),
             customTextfaild(labelText: "Email"),
             SizedBox(
               height: 10,
@@ -44,7 +45,8 @@ class loginView extends StatelessWidget {
                     children: [
                       Text(
                         "Forget Your password?",
-                        style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w500),
                       ),
                       Icon(
                         Icons.arrow_right_alt,
@@ -62,31 +64,58 @@ class loginView extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton(
-  onPressed: () {},
-  child: Text(
-    "LOGIN",
-    style: TextStyle(fontWeight: FontWeight.w500),
-  ),
-  style: ButtonStyle(
-    padding: MaterialStateProperty.all(EdgeInsets.all(14)),
-    backgroundColor: MaterialStateProperty.all(
-      Color(0xffDB3022),
-    ),
-    elevation: MaterialStateProperty.all(0),
-    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-    ),
-  ),
-)
-,
+                    onPressed: () {},
+                    child: Text(
+                      "LOGIN",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.all(14)),
+                      backgroundColor: MaterialStateProperty.all(
+                        Color(0xffDB3022),
+                      ),
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
+            ),
+            Spacer(flex: 3),
+            Text("Or login with"),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Image.asset(
+                  "assets/googleicon.jpg",
+                  width: 30,
+                ),
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 30)),
+                  backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  elevation: MaterialStateProperty.all(0),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+              ),
             )
           ],
         ),
