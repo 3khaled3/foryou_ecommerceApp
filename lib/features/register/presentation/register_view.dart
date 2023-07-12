@@ -18,31 +18,34 @@ class registerView extends StatelessWidget {
       appBar: arrowappbar(onPressed: () {}),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            headerText(titel: "Sign up"),
-            const Spacer(flex: 1),
-            customTextfaild(labelText: "Name"),
-            const SizedBox(
-              height: 10,
-            ),
-            customTextfaild(labelText: "Email"),
-            const SizedBox(
-              height: 10,
-            ),
-            customTextfaild(labelText: "Password"),
-            textbuttom(text: "Already have an account?", onPressed: () {}),
-            const SizedBox(
-              height: 8,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: customElevationButtom(text: "SIGN UP", onPressed: () {}),
-            ),
-            const Spacer(flex: 3),
-            const Text("Or sign up with"),
-            googlebuttom(onPressed: () {})
-          ],
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              headerText(titel: "Sign up"),
+              SizedBox(height: MediaQuery.sizeOf(context).height*.1,),
+              customTextfaild(labelText: "Name"),
+              const SizedBox(
+                height: 10,
+              ),
+              customTextfaild(labelText: "Email"),
+              const SizedBox(
+                height: 10,
+              ),
+              customTextfaild(labelText: "Password"),
+              textbuttom(text: "Already have an account?", onPressed: () {}),
+              const SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: customElevationButtom(text: "SIGN UP", onPressed: () {}),
+              ),
+              SizedBox(height: MediaQuery.sizeOf(context).height*.12,),
+              const Text("Or sign up with"),
+              googlebuttom(onPressed: () {})
+            ],
+          ),
         ),
       ),
     );

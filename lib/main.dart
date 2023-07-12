@@ -5,7 +5,7 @@ import 'package:foryou/features/register/presentation/register_view.dart';
 void main()
 {
   runApp(MaterialApp(debugShowCheckedModeBanner: false,
-    // home: loginView(),
-    home: registerView(),
+    home: loginView(),
+    // home: registerView(),
   ));
 }

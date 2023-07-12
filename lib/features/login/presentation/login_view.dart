@@ -18,27 +18,30 @@ class loginView extends StatelessWidget {
       appBar: arrowappbar(onPressed: () {}),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            headerText(titel: "Login"),
-            const Spacer(flex: 1),
-            customTextfaild(labelText: "Email"),
-            const SizedBox(
-              height: 10,
-            ),
-            customTextfaild(labelText: "Password"),
-            textbuttom(text: "Forget Your password?", onPressed: () {}),
-            const SizedBox(
-              height: 8,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: customElevationButtom(text: "LOGIN", onPressed: () {}),
-            ),
-            const Spacer(flex: 3),
-            const Text("Or login with"),
-            googlebuttom(onPressed: () {})
-          ],
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              headerText(titel: "Login"),
+              SizedBox(height: MediaQuery.sizeOf(context).height*.1,),
+              customTextfaild(labelText: "Email"),
+              const SizedBox(
+                height: 10,
+              ),
+              customTextfaild(labelText: "Password"),
+              textbuttom(text: "Forget Your password?", onPressed: () {}),
+              const SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: customElevationButtom(text: "LOGIN", onPressed: () {}),
+              ),
+              SizedBox(height: MediaQuery.sizeOf(context).height*.2,),
+              const Text("Or login with"),
+              googlebuttom(onPressed: () {})
+            ],
+          ),
         ),
       ),
     );
