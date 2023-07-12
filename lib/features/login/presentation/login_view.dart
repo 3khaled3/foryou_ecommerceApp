@@ -1,122 +1,43 @@
 import 'package:flutter/material.dart';
-
+import '../../../constant.dart';
+import '../../../core/widget/arrowAppBar.dart';
+import '../../../core/widget/customElevationButtom.dart';
 import '../../../core/widget/customTextFaild.dart';
+import '../../../core/widget/googlebuttom.dart';
+import '../../../core/widget/headertext.dart';
+import '../../../core/widget/textbuttom.dart';
 
+// ignore: camel_case_types
 class loginView extends StatelessWidget {
   const loginView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff9f9f9),
-      // backgroundColor: Color.fromARGB(255, 195, 75, 75),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xfff9f9f9),
-        leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.arrow_back_ios_new),
-            color: Colors.black),
-      ),
+      backgroundColor: kPrimaryColor,
+      appBar: arrowappbar(onPressed: () {}),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Row(
-              children: [
-                Text(
-                  "Login",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
-                ),
-              ],
-            ),
-            Spacer(flex: 1),
+            headerText(titel: "Login"),
+            const Spacer(flex: 1),
             customTextfaild(labelText: "Email"),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             customTextfaild(labelText: "Password"),
-            Row(
-              children: [
-                Spacer(),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Text(
-                        "Forget Your password?",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w500),
-                      ),
-                      Icon(
-                        Icons.arrow_right_alt,
-                        color: Colors.red,
-                      ),
-                    ],
-                  ),
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    backgroundColor: MaterialStateProperty.all(
-                      Colors.transparent,
-                    ),
-                    elevation: MaterialStateProperty.all(0),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
+            textbuttom(text: "Forget Your password?", onPressed: () {}),
+            const SizedBox(
               height: 8,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "LOGIN",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.all(14)),
-                      backgroundColor: MaterialStateProperty.all(
-                        Color(0xffDB3022),
-                      ),
-                      elevation: MaterialStateProperty.all(0),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            SizedBox(
+              width: double.infinity,
+              child: customElevationButtom(text: "LOGIN", onPressed: () {}),
             ),
-            Spacer(flex: 3),
-            Text("Or login with"),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Image.asset(
-                  "assets/googleicon.jpg",
-                  width: 30,
-                ),
-                style: ButtonStyle(
-                  padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 30)),
-                  backgroundColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  elevation: MaterialStateProperty.all(0),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-              ),
-            )
+            const Spacer(flex: 3),
+            const Text("Or login with"),
+            googlebuttom(onPressed: () {})
           ],
         ),
       ),
