@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '../../../../core/widget/rattingRow.dart';
+ import '../../../../core/widget/rattingRow.dart';
 
 class saleItem extends StatelessWidget {
   const saleItem({

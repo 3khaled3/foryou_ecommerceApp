@@ -26,7 +26,6 @@ class homeView extends StatelessWidget {
               onPressed: () {},
             ),
             saleListView(),
-            Text("data"),
           ],
         ),
       ),
