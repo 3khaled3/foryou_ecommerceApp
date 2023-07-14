@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:foryou/core/widget/customElevationButtom.dart';
+import 'package:intl/intl.dart';
 
 // ignore: camel_case_types
 class filterBottomSheetView extends StatelessWidget {
@@ -8,21 +10,82 @@ class filterBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(
-            height: 14,
+    RangeValues currentRangeValues = const RangeValues(10, 1000);
+    var f = NumberFormat("#####", "en_US");
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(
+          height: 14,
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+          child: Text(
+            "Price range",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
-          // Slider(value: value, onChanged: onChanged)
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                f.format(currentRangeValues.start),
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+              ),
+              Text(
+                f.format(currentRangeValues.end),
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+              ),
+            ],
+          ),
+        ),
+        RangeSlider(
+          activeColor: Colors.red,
+          inactiveColor: Colors.grey,
+          values: currentRangeValues,
+          min: 10,
+          max: 1000,
+          // divisions: 10,
+          labels: RangeLabels(
+            currentRangeValues.start.toString(),
+            currentRangeValues.end.toString(),
+          ),
+          onChanged: (RangeValues values) {
+            currentRangeValues = values;
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            children: [
+              Expanded(
+                  child:
+                      customElevationButtom(text: "Apply", onPressed: () {})),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: customElevationButtom(
+                  text: "Discard",
+                  onPressed: () {},
+                  buttomColor: const Color.fromARGB(255, 218, 218, 218),
+                  textColor: Colors.black,
+                ),
+              )
+            ],
+          ),
+        )
 
-          
-          SizedBox(
-            height: MediaQuery.of(context).viewInsets.bottom,
-          ),
-        ],
-      );
+        // SizedBox(
+        //   height: MediaQuery.of(context).viewInsets.bottom,
+        // ),
+      ],
+    );
   }
 }
