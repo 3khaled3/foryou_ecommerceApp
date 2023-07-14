@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foryou/features/login/presentation/login_view.dart';
+import 'package:foryou/features/main/presentation/MainView.dart';
 import 'package:foryou/features/register/presentation/register_view.dart';
 import 'package:foryou/mmmmmm.dart';
 
@@ -12,8 +13,9 @@ import 'features/home/presentation/home_view.dart';
 void main()
 {
   runApp(MaterialApp(debugShowCheckedModeBanner: false,
-    // home: loginView(),
-    home: favoriteView(),
+    home: MainView(),
+    // home: favoriteView(),
+
     // home: PriceRangeSlider(),
   ));
 }

@@ -16,6 +16,7 @@ class saleListView extends StatelessWidget {
             height: 290,
             width: 170,
             child: ListView.builder(
+              itemCount: 5,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return saleItem();
