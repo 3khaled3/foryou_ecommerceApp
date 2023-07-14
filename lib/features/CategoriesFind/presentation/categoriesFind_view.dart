@@ -1,5 +1,5 @@
 // ignore_for_file: file_names
-import 'package:foryou/features/home/presentation/widget/saleItem.dart';
+import 'package:foryou/core/ProdactWidget/saleItem.dart';
 import '../../../constant.dart';
 import 'widget/CategorieFindAppBar.dart';
 import 'package:flutter/material.dart';

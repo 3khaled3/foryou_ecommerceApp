@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:foryou/features/home/presentation/widget/saleItem.dart';
+import 'package:foryou/core/ProdactWidget/saleItem.dart';
 
 class saleListView extends StatelessWidget {
   const saleListView({
