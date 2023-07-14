@@ -1,8 +1,8 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
-import 'package:flutter/material.dart';
+// ignore_for_file: file_names
+
 import '../../../constant.dart';
-import '../../../core/widget/customElevationButtom.dart';
 import 'widget/CategorieFindAppBar.dart';
+import 'package:flutter/material.dart';
 import 'widget/tabstogel.dart';
 
 class CategoriesFindView extends StatelessWidget {
@@ -13,10 +13,54 @@ class CategoriesFindView extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: CategorieFindAppBar(),
-      body: const SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
-          children: [tabstogel()],
+          children: [
+            const tabstogel(),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: const Row(
+                      children: [
+                        Icon(Icons.filter_list, color: Colors.black),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Filters",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11)),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: GestureDetector(
+                    child: const Row(
+                      children: [
+                        Icon(Icons.swap_vert_sharp, color: Colors.black),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Filters",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11)),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            )
+          ],
         ),
       ),
     );
