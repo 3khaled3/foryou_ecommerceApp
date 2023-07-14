@@ -24,8 +24,8 @@ class favoriteView extends StatelessWidget {
               width: MediaQuery.sizeOf(context).width,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 300,
-                    mainAxisExtent: 300,
+                    maxCrossAxisExtent: 250,
+                    mainAxisExtent: 285,
                     childAspectRatio: 3 / 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10),

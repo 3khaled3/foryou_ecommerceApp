@@ -24,14 +24,16 @@ class saleItem extends StatelessWidget {
                 crossAxisAlignment:
                     CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    "assets/styles/2.jpg",
-                    width: 162,height: 184,fit: BoxFit.cover,
+                  Center(
+                    child: Image.asset(
+                      "assets/styles/2.jpg",
+                      width: 162,height: 184,fit: BoxFit.cover,
+                    ),
                   ),
                   const RatingRow(
                     rating: 2,
                     ratingNum: 100,
-                    iconSize: 16.00,
+                    iconSize: 18.00,
                     starColor: Color(0xffFFBA49),
                   ),
                   const Text(
@@ -84,7 +86,7 @@ class saleItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 122,
+            left: 131,
             height: 370,
             child: SizedBox(
               height: 36,
