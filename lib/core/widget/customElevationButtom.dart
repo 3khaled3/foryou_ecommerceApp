@@ -1,24 +1,39 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-ElevatedButton customElevationButtom({required text,required onPressed}) {
+class customElevationButtom extends StatelessWidget {
+  final Color buttomColor;
+  final Color textColor;
+  final void Function() onPressed;
+  final String text;
+
+  const customElevationButtom({
+    required this.text,
+    required this.onPressed,
+    this.buttomColor = Colors.red,
+    this.textColor = Colors.white,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return ElevatedButton(
-              onPressed: onPressed,
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(const EdgeInsets.all(14)),
-                backgroundColor: MaterialStateProperty.all(
-                  const Color(0xffDB3022),
-                ),
-                elevation: MaterialStateProperty.all(0),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
-              child:  Text(
-                text,
-                style: const TextStyle(fontWeight: FontWeight.w500),
-              ),
-            );
+      onPressed: onPressed,
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(const EdgeInsets.all(14)),
+        backgroundColor: MaterialStateProperty.all(
+          buttomColor,
+        ),
+        elevation: MaterialStateProperty.all(0),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(fontWeight: FontWeight.w500, color: textColor),
+      ),
+    );
   }
-
+}

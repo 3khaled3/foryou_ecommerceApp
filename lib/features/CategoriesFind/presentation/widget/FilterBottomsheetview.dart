@@ -65,21 +65,24 @@ class filterBottomSheetView extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                  child:
-                      customElevationButtom(text: "Apply", onPressed: () {})),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
                 child: customElevationButtom(
                   text: "Discard",
                   onPressed: () {},
                   buttomColor: const Color.fromARGB(255, 218, 218, 218),
                   textColor: Colors.black,
                 ),
-              )
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                  child:
+                      customElevationButtom(text: "Apply", onPressed: () {})),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 10,
         )
 
         // SizedBox(

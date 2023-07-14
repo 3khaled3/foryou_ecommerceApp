@@ -12,7 +12,7 @@ void main()
 {
   runApp(MaterialApp(debugShowCheckedModeBanner: false,
     // home: loginView(),
-    // home: CategoriesFindView(),
-    home: PriceRangeSlider(),
+    home: CategoriesFindView(),
+    // home: PriceRangeSlider(),
   ));
 }
