@@ -1,35 +1,24 @@
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import '../../../constant.dart';
 import '../../../core/widget/customElevationButtom.dart';
+import 'widget/CategorieFindAppBar.dart';
+import 'widget/tabstogel.dart';
 
-
-class CategoriesView extends StatelessWidget {
-  const CategoriesView({Key? key}) : super(key: key);
+class CategoriesFindView extends StatelessWidget {
+  const CategoriesFindView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      // appBar:,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                child: customElevationButtom(
-                  text: "VIEW ALL ITEMS",
-                  onPressed: () {},
-                ),
-              ),
-             
-            ],
-          ),
+      appBar: CategorieFindAppBar(),
+      body: const SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          children: [tabstogel()],
         ),
       ),
     );
   }
 }
-
