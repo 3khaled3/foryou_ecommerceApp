@@ -1,12 +1,9 @@
 // ignore_for_file: file_names
-
-import 'package:foryou/features/CategoriesFind/presentation/widget/FilterBottomsheetview.dart';
-import 'package:foryou/features/CategoriesFind/presentation/widget/SortButtomSheet.dart';
-
+import 'package:foryou/features/home/presentation/widget/saleItem.dart';
 import '../../../constant.dart';
-import 'widget/BottomSheet.dart';
 import 'widget/CategorieFindAppBar.dart';
 import 'package:flutter/material.dart';
+import 'widget/FilterAndSortRow.dart';
 import 'widget/tabstogel.dart';
 
 class CategoriesFindView extends StatelessWidget {
@@ -22,54 +19,25 @@ class CategoriesFindView extends StatelessWidget {
         child: Column(
           children: [
             const tabstogel(),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      showbottomSheet(
-                          context: context, widget: filterBottomSheetView());
-                    },
-                    child: const Row(
-                      children: [
-                        Icon(Icons.filter_list, color: Colors.black),
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Filters",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 11)),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: GestureDetector(onTap: () {
-                    
-                     showbottomSheet(
-                          context: context, widget: sortBottomSheetView());
-                  },
-                    child: const Row(
-                      children: [
-                        Icon(Icons.swap_vert_sharp, color: Colors.black),
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Sort",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 11)),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
+            const FilterAndSortRow(),
+            SizedBox(
+              // height: MediaQuery.sizeOf(context).height,
+              width: MediaQuery.sizeOf(context).width,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 300,
+                    mainAxisExtent: 300,
+                    childAspectRatio: 3 / 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return SizedBox(child: saleItem());
+                  //
+                },
+              ),
             )
           ],
         ),
