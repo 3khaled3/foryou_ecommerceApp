@@ -38,7 +38,7 @@ class RatingRow extends StatelessWidget {
           "($ratingNum)",
           style: const TextStyle(
               color: Colors.grey,
-              fontSize: 10,
+              fontSize: 11,
               fontWeight: FontWeight.normal),
         )
       ],

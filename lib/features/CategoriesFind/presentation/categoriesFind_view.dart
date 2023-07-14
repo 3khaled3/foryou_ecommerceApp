@@ -21,7 +21,6 @@ class CategoriesFindView extends StatelessWidget {
             const tabstogel(),
             const FilterAndSortRow(),
             SizedBox(
-              // height: MediaQuery.sizeOf(context).height,
               width: MediaQuery.sizeOf(context).width,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -34,7 +33,7 @@ class CategoriesFindView extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
                 itemBuilder: (context, index) {
-                  return SizedBox(child: saleItem());
+                  return saleItem();
                   //
                 },
               ),

@@ -14,80 +14,77 @@ class saleItem extends StatelessWidget {
           top: 8, bottom: 8, right: 4, left: 4),
       child: Stack(
         children: [
-          Card(
-            elevation: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.white),
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      "assets/styles/2.jpg",
-                      height: 184,
-                    ),
-                    const RatingRow(
-                      rating: 2,
-                      ratingNum: 100,
-                      iconSize: 14.00,
-                      starColor: Color(0xffFFBA49),
-                    ),
-                    const Text(
-                      "Prand",
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11,
-                          fontWeight: FontWeight.normal),
-                    ),
-                    const Text(
-                      "Sport Dress",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    const Row(
-                      children: [
-                        SizedBox(
-                          height: 16,
-                          child: Text(
-                            "16\$",
-                            style: TextStyle(
-                                decoration: TextDecoration
-                                    .lineThrough,
-                                color: Colors.grey,
-                                fontSize: 14,
-                                fontWeight:
-                                    FontWeight.normal),
-                          ),
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.white),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    "assets/styles/2.jpg",
+                    width: 162,height: 184,fit: BoxFit.cover,
+                  ),
+                  const RatingRow(
+                    rating: 2,
+                    ratingNum: 100,
+                    iconSize: 16.00,
+                    starColor: Color(0xffFFBA49),
+                  ),
+                  const Text(
+                    "Prand",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 11,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  const Text(
+                    "Sport Dress",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        height: 16,
+                        child: Text(
+                          "16\$",
+                          style: TextStyle(
+                              decoration: TextDecoration
+                                  .lineThrough,
+                              color: Colors.grey,
+                              fontSize: 14,
+                              fontWeight:
+                                  FontWeight.normal),
                         ),
-                        SizedBox(
-                          width: 5,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      SizedBox(
+                        height: 16,
+                        child: Text(
+                          "16\$",
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 14,
+                              fontWeight:
+                                  FontWeight.normal),
                         ),
-                        SizedBox(
-                          height: 16,
-                          child: Text(
-                            "16\$",
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 14,
-                                fontWeight:
-                                    FontWeight.normal),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
           ),
           Positioned(
-            left: 100,
+            left: 122,
             height: 370,
             child: SizedBox(
               height: 36,
