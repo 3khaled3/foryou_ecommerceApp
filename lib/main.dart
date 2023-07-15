@@ -14,7 +14,7 @@ void main()
 {
   runApp(MaterialApp(debugShowCheckedModeBanner: false,
     home: MainView(),
-    // home: favoriteView(),
+    // home: itemCard(),
 
     // home: PriceRangeSlider(),
   ));

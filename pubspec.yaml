@@ -39,6 +39,7 @@ dependencies:
   we_slide: ^2.4.0
   intl: ^0.18.1
   toggle_switch: ^2.1.0
+  line_icons: ^2.0.3
 
 dev_dependencies:
   flutter_test:
