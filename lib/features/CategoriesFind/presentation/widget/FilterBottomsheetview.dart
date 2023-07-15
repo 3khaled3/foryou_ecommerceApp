@@ -17,9 +17,13 @@ class filterBottomSheetView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(
-          height: 14,
-        ),
+         const SizedBox(
+              height: 10,
+            ),
+            Container(decoration: BoxDecoration(color: Colors.grey ,borderRadius: BorderRadius.circular(40)),width: 60,height: 6,),
+            const SizedBox(
+              height: 20,
+            ),
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Text(

@@ -1,9 +1,11 @@
 // ignore_for_file: file_names
 import 'package:foryou/core/ProdactWidget/saleItem.dart';
+import 'package:foryou/features/Settings/presentation/widget/PasswordSettings.dart';
 import '../../../constant.dart';
+import '../../../core/widget/BottomSheet.dart';
 import 'widget/favoriteViewAppBar.dart';
 import 'package:flutter/material.dart';
-import 'widget/FilterAndSortRow.dart';
+import 'widget/nameSetting.dart';
 import 'widget/Buttom.dart';
 
 class SettingsView extends StatelessWidget {
@@ -12,14 +14,25 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
-      appBar: FavoriteViewAppBar(),
-      body: Column(
-      children: [
-SettingsButtoms(title: "Personal Information", Suptitle: "Name, Date of Birth", onPressed: (){}),
-SettingsButtoms(title: "Password", Suptitle: "Password Setting", onPressed: (){}),
-      ],
-    )
-    );
+        backgroundColor: kPrimaryColor,
+        appBar: settingsViewAppBar(),
+        body: Column(
+          children: [
+            SettingsButtoms(
+                title: "Personal Information",
+                Suptitle: "Name, Date of Birth",
+                onPressed: () {
+                   showbottomSheet(
+                      context: context, widget: const nameSettingBottomSheetView());
+                }),
+            SettingsButtoms(
+                title: "Password",
+                Suptitle: "Password Setting",
+                onPressed: () {
+                   showbottomSheet(
+                      context: context, widget: const passwoedSettingBottomSheetView());
+                }),
+          ],
+        ));
   }
 }

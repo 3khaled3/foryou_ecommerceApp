@@ -2,8 +2,13 @@
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
-AppBar FavoriteViewAppBar() {
-  return AppBar(
+AppBar settingsViewAppBar() {
+  return AppBar( leading:  IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+          )) ,
     actions: [
       IconButton(
           onPressed: () {},
@@ -16,7 +21,7 @@ AppBar FavoriteViewAppBar() {
     backgroundColor: Colors.white,
     centerTitle: true,
     title: const Text(
-      "favorite",
+      "Settings",
       style: TextStyle(
           fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
     ),
