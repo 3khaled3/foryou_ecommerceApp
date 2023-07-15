@@ -20,7 +20,11 @@ class filterBottomSheetView extends StatelessWidget {
          const SizedBox(
               height: 10,
             ),
-            Container(decoration: BoxDecoration(color: Colors.grey ,borderRadius: BorderRadius.circular(40)),width: 60,height: 6,),
+            Row(
+              children: [
+                Spacer(), Container(decoration: BoxDecoration(color: Colors.grey ,borderRadius: BorderRadius.circular(40)),width: 60,height: 6,),
+              Spacer(),],
+            ),
             const SizedBox(
               height: 20,
             ),

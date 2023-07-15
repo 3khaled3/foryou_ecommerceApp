@@ -16,8 +16,8 @@ import 'features/home/presentation/home_view.dart';
 void main()
 {
   runApp(MaterialApp(debugShowCheckedModeBanner: false,
-    // home: MainView(),
-    home:SettingsView(),
+    home: MainView(),
+    // home:SettingsView(),
 
     // home: PriceRangeSlider(),
   ));

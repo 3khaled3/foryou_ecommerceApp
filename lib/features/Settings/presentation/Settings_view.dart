@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-import 'package:foryou/core/ProdactWidget/saleItem.dart';
 import 'package:foryou/features/Settings/presentation/widget/PasswordSettings.dart';
 import '../../../constant.dart';
 import '../../../core/widget/BottomSheet.dart';
