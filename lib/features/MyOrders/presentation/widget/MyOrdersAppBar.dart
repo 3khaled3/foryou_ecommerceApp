@@ -1,8 +1,16 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
 AppBar MyOrdersAppBar({required onPressed}) {
   return AppBar(
+    leading: IconButton(
+        onPressed: () {},
+        icon: const Icon(
+          Icons.arrow_back_ios_new,
+          color: Colors.black,
+        )),
     actions: [
       IconButton(
           onPressed: onPressed,
