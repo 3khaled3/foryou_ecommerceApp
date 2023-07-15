@@ -5,6 +5,8 @@ import 'package:foryou/features/Categories/presentation/categories_view.dart';
 import 'package:foryou/features/Favorite/presentation/Favorite_view.dart';
 import 'package:foryou/features/home/presentation/home_view.dart';
 
+import '../../Bag/presentation/Bag_view.dart';
+
 class MainView extends StatefulWidget {
   const MainView({super.key});
 
@@ -18,7 +20,7 @@ class _MainViewState extends State<MainView> {
   final List<Widget> _screens = [
     const homeView(),
     const CategoriesView(),
-    const favoriteView(),
+    const BagView(),
     const favoriteView(),
     const favoriteView(),
   ];

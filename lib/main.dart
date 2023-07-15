@@ -4,6 +4,7 @@ import 'package:foryou/features/main/presentation/MainView.dart';
 import 'package:foryou/features/register/presentation/register_view.dart';
 import 'package:foryou/mmmmmm.dart';
 
+import 'features/Bag/presentation/Bag_view.dart';
 import 'features/Categories/presentation/categories_view.dart';
 import 'features/CategoriesFind/presentation/categoriesFind_view.dart';
 import 'features/Favorite/presentation/Favorite_view.dart';
@@ -14,7 +15,7 @@ void main()
 {
   runApp(MaterialApp(debugShowCheckedModeBanner: false,
     home: MainView(),
-    // home: itemCard(),
+    // home:BagView(),
 
     // home: PriceRangeSlider(),
   ));
