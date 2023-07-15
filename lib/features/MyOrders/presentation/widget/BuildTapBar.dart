@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'MyOrdersItem.dart';
 
 class BuildTabBar extends StatefulWidget {
   const BuildTabBar({Key? key}) : super(key: key);
@@ -67,9 +68,17 @@ class _BuildTabBarState extends State<BuildTabBar>
           child: TabBarView(
             controller: _tabController,
             children: [
-              Column(),
-              Column(),
-              Column(),
+              ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                    child: MyOrdersItem(),
+                  );
+                },
+              ),
+              const Column(),
+              const Column(),
             ],
           ),
         ),
