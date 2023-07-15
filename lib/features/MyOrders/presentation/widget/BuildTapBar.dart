@@ -27,62 +27,53 @@ class _BuildTabBarState extends State<BuildTabBar>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: TabBar(
-                  unselectedLabelColor: Colors.black,
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.black,
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: SizedBox(
+            height: 35,
+            child: TabBar(
+              unselectedLabelColor: Colors.black,
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.black,
+              ),
+              controller: _tabController,
+              tabs: const [
+                Tab(
+                  child: Text(
+                    "Delivered",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                   ),
-                  controller: _tabController,
-                  tabs: const [
-                    Tab(
-                      child: Text(
-                        "Delivered",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        "Processing",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        "Cancelled",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ],
                 ),
-              ),
+                Tab(
+                  child: Text(
+                    "Processing",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Cancelled",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  Column(),
-                  Column(),
-                  Column(),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              Column(),
+              Column(),
+              Column(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

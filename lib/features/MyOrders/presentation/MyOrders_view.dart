@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foryou/features/MyOrders/presentation/widget/BuildTapBar.dart';
+import 'package:foryou/features/MyOrders/presentation/widget/MyOrdersAppBar.dart';
+
 import '../../../constant.dart';
+import 'widget/BuildTapBar.dart';
+
 
 
 // ignore: camel_case_types
@@ -9,20 +12,15 @@ class MyOrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(appBar: MyOrdersAppBar(onPressed: (){}),
       backgroundColor: kPrimaryColor,
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height * .03,
-            ),
-            BuildTabBar()
-            
-          ],
-        ),
+      body: Column(
+        children: [
+          
+       
+          Expanded(child: BuildTabBar())
+          
+        ],
       ),
     );
   }
