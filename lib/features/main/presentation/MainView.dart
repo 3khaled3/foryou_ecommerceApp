@@ -6,6 +6,7 @@ import 'package:foryou/features/Favorite/presentation/Favorite_view.dart';
 import 'package:foryou/features/home/presentation/home_view.dart';
 
 import '../../Bag/presentation/Bag_view.dart';
+import '../../Profil/presentation/profil_View.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -22,7 +23,7 @@ class _MainViewState extends State<MainView> {
     const CategoriesView(),
     const BagView(),
     const favoriteView(),
-    const favoriteView(),
+    const ProfilView(),
   ];
 
   @override
