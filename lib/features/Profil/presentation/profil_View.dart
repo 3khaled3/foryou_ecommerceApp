@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foryou/features/Profil/presentation/widget/ProfileButtoms.dart';
 import '../../../constant.dart';
+import 'widget/ProfileAppBar.dart';
+import 'widget/ProfileButtoms.dart';
+import 'widget/ProfileInfo.dart';
 
 // ignore: camel_case_types
 class ProfilView extends StatelessWidget {
@@ -9,17 +11,31 @@ class ProfilView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PeofileAppBar(onPressed: () {}),
       backgroundColor: kPrimaryColor,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-           
-            SafeArea(child: profileButtoms(title: "Payment methods", Suptitle: "Visa  **34",onPressed:(){})),
-             profileButtoms(title: "My orders",Suptitle: "Already have 12 orders", onPressed:(){}),
-             profileButtoms(title: "Shipping addresses",Suptitle: "3 ddresses", onPressed:(){}),
-             profileButtoms(title: "My reviews",Suptitle: "Reviews for 4 items", onPressed:(){}),
-             profileButtoms(title: "Settings",Suptitle: " password", onPressed:(){}),
+            const UserInformation(),
+            profileButtoms(
+                title: "My orders",
+                Suptitle: "Already have 12 orders",
+                onPressed: () {}),
+            profileButtoms(
+                title: "Shipping addresses",
+                Suptitle: "3 ddresses",
+                onPressed: () {}),
+            profileButtoms(
+                title: "Payment methods",
+                Suptitle: "Visa  **34",
+                onPressed: () {}),
+            profileButtoms(
+                title: "My reviews",
+                Suptitle: "Reviews for 4 items",
+                onPressed: () {}),
+            profileButtoms(
+                title: "Settings", Suptitle: " password", onPressed: () {}),
           ],
         ),
       ),
