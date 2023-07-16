@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 class RatingRow extends StatelessWidget {
   final int rating;
-  final Color starColor;
   final double iconSize;
   final int ratingNum;
 
   const RatingRow({
     required this.rating,
     required this.ratingNum,
-    this.starColor = Colors.yellow,
     this.iconSize = 24.0,
   });
 
@@ -22,13 +20,13 @@ class RatingRow extends StatelessWidget {
             if (index < rating) {
               return Icon(
                 Icons.star,
-                color: starColor,
+                color:  Color(0xffFFBA49),
                 size: iconSize,
               );
             } else {
               return Icon(
                 Icons.star_border,
-                color: starColor,
+                color:  Color(0xffFFBA49),
                 size: iconSize,
               );
             }

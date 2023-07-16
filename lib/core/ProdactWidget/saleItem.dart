@@ -33,7 +33,6 @@ class saleItem extends StatelessWidget {
                     rating: 2,
                     ratingNum: 100,
                     iconSize: 18.00,
-                    starColor: Color(0xffFFBA49),
                   ),
                   const Text(
                     "Prand",
