@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foryou/features/MyOrders/presentation/MyOrders_view.dart';
+import 'package:foryou/features/Product/presentation/widget/productImage.dart';
 import 'package:foryou/features/Settings/presentation/Settings_view.dart';
 import 'package:foryou/features/login/presentation/login_view.dart';
 import 'package:foryou/features/main/presentation/MainView.dart';
@@ -20,6 +21,6 @@ void main()
     // home: MainView(),
     home:productView(),
 
-    // home: PriceRangeSlider(),
+    // home: CarouselWithIndicatorDemo(),
   ));
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class productImage extends StatelessWidget {
   const productImage({
@@ -7,15 +8,33 @@ class productImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * .5,
-        child: Image.asset(
-          "assets/styles/1.jpg",
-          fit: BoxFit.cover,
-          width: double.infinity,
-        ),
-      ),
-    );
+    return productimages(context, ImageSliders);
   }
 }
+
+CarouselSlider productimages(BuildContext context, imageSliders) {
+  return CarouselSlider(
+    items: imageSliders,
+    options: CarouselOptions(
+        height: MediaQuery.sizeOf(context).height * .5,
+        onPageChanged: (index, reason) {}),
+  );
+}
+
+final List<String> imgList = [
+  'assets/styles/1.jpg',
+  'assets/styles/2.jpg',
+  'assets/styles/3.jpg',
+  'assets/styles/4.jpg',
+];
+
+final List<Widget> ImageSliders = imgList
+    .map((item) => Container(
+          child: Image.asset(
+            item,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ))
+    .toList();
