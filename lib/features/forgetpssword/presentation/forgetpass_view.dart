@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../constant.dart';
 import '../../../core/widget/arrowAppBar.dart';
 import '../../../core/widget/customElevationButtom.dart';
@@ -13,7 +14,9 @@ class forgetPssView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      appBar: arrowappbar(onPressed: () {}),
+      appBar: arrowappbar(onPressed: () {
+        GoRouter.of(context).pop();
+      }),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
@@ -21,21 +24,19 @@ class forgetPssView extends StatelessWidget {
           child: Column(
             children: [
               headerText(titel: "Forgot pssword"),
-              SizedBox(height: MediaQuery.sizeOf(context).height*.15,),
-              const Text(" Please, enter your email address. You will receive a link to create a new password via email."),
-              
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .15,
+              ),
+              const Text(
+                  " Please, enter your email address. You will receive a link to create a new password via email."),
               Padding(
-                padding: const EdgeInsets.only(top: 20,bottom: 25),
+                padding: const EdgeInsets.only(top: 20, bottom: 25),
                 child: customTextfaild(labelText: "Email"),
               ),
-              
-             
               SizedBox(
                 width: double.infinity,
                 child: customElevationButtom(text: "SEND", onPressed: () {}),
               ),
-            
-            
             ],
           ),
         ),

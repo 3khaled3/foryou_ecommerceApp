@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foryou/core/utils/routes.dart';
+import 'package:go_router/go_router.dart';
 import '../../../constant.dart';
 import '../../../core/widget/arrowAppBar.dart';
 import '../../../core/widget/customElevationButtom.dart';
@@ -15,7 +17,9 @@ class loginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      appBar: arrowappbar(onPressed: () {}),
+      appBar: arrowappbar(onPressed: () {
+        GoRouter.of(context).pop();
+      }),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
@@ -23,13 +27,19 @@ class loginView extends StatelessWidget {
           child: Column(
             children: [
               headerText(titel: "Login"),
-              SizedBox(height: MediaQuery.sizeOf(context).height*.1,),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .1,
+              ),
               customTextfaild(labelText: "Email"),
               const SizedBox(
                 height: 10,
               ),
               customTextfaild(labelText: "Password"),
-              textbuttom(text: "Forget Your password?", onPressed: () {}),
+              textbuttom(
+                  text: "Forget Your password?",
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouter.kforgetPssView);
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -37,7 +47,9 @@ class loginView extends StatelessWidget {
                 width: double.infinity,
                 child: customElevationButtom(text: "LOGIN", onPressed: () {}),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height*.2,),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .2,
+              ),
               const Text("Or login with"),
               googlebuttom(onPressed: () {})
             ],

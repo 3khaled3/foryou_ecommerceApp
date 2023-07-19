@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../constant.dart';
+import '../../../core/utils/routes.dart';
 import '../../../core/widget/arrowAppBar.dart';
 import '../../../core/widget/customElevationButtom.dart';
 import '../../../core/widget/customTextFaild.dart';
@@ -23,7 +25,9 @@ class registerView extends StatelessWidget {
           child: Column(
             children: [
               headerText(titel: "Sign up"),
-              SizedBox(height: MediaQuery.sizeOf(context).height*.1,),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .1,
+              ),
               customTextfaild(labelText: "Name"),
               const SizedBox(
                 height: 10,
@@ -33,7 +37,11 @@ class registerView extends StatelessWidget {
                 height: 10,
               ),
               customTextfaild(labelText: "Password"),
-              textbuttom(text: "Already have an account?", onPressed: () {}),
+              textbuttom(
+                  text: "Already have an account?",
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouter.kloginview);
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -41,7 +49,9 @@ class registerView extends StatelessWidget {
                 width: double.infinity,
                 child: customElevationButtom(text: "SIGN UP", onPressed: () {}),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height*.12,),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .12,
+              ),
               const Text("Or sign up with"),
               googlebuttom(onPressed: () {})
             ],
