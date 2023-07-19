@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foryou/core/utils/routes.dart';
 import 'package:foryou/features/MyOrders/presentation/MyOrders_view.dart';
 import 'package:foryou/features/Product/presentation/widget/productImage.dart';
 import 'package:foryou/features/Settings/presentation/Settings_view.dart';
@@ -17,10 +18,9 @@ import 'features/home/presentation/home_view.dart';
 
 void main()
 {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false,
+  runApp(MaterialApp.router(routerConfig: AppRouter.router,debugShowCheckedModeBanner: false,
     // home: MainView(),
-    home:productView(),
-
+    
     // home: CarouselWithIndicatorDemo(),
   ));
 }
