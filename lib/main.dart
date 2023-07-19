@@ -16,11 +16,11 @@ import 'features/Product/presentation/product_view.dart';
 import 'features/forgetpssword/presentation/forgetpass_view.dart';
 import 'features/home/presentation/home_view.dart';
 
-void main()
-{
-  runApp(MaterialApp.router(routerConfig: AppRouter.router,debugShowCheckedModeBanner: false,
+void main() {
+  runApp(MaterialApp.router(
+    routerConfig: AppRouter.router, debugShowCheckedModeBanner: false,
     // home: MainView(),
-    
+
     // home: CarouselWithIndicatorDemo(),
   ));
 }
