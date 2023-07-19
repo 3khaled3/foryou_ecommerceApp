@@ -25,6 +25,10 @@ abstract class AppRouter {
         path: kforgetPssView,
         builder: (context, state) => const forgetPssView(),
       ),
+      GoRoute(
+        path: kHomeView,
+        builder: (context, state) => const MainView(),
+      ),
      
     ],
   );
