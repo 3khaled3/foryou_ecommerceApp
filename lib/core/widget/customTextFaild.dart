@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, camel_case_types
+
 import 'package:flutter/material.dart';
 
 class customTextfaild extends StatelessWidget {
@@ -15,34 +17,43 @@ class customTextfaild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: TextFormField(
+    TextEditingController _controller = TextEditingController();
+    return Stack(
+      children: [
+        TextFormField(
+          controller: _controller,
           validator: validator,
           initialValue: initialValue,
           onChanged: onChanged,
           decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: Colors.white),
+            ),
             filled: true,
             fillColor: Colors.white,
             labelText: labelText,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color.fromARGB(0, 76, 175, 79),
-              ),
+            contentPadding:
+                const EdgeInsets.only(top: 16, left: 12, right: 12, bottom: 8),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: Colors.white),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: Colors.white),
             ),
             labelStyle: const TextStyle(color: Colors.grey),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
-            ),
+            floatingLabelBehavior: FloatingLabelBehavior.auto,
           ),
         ),
-      ),
+        Positioned(
+          bottom: 0,height: 0,
+          child: Text("data")
+        )
+      ],
     );
   }
 }
+
+
