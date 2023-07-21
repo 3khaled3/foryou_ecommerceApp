@@ -11,6 +11,7 @@ class nameSettingBottomSheetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController FullnameController = TextEditingController();
     return Container(
       decoration: const BoxDecoration(
           color: kPrimaryColor,
@@ -42,7 +43,7 @@ class nameSettingBottomSheetView extends StatelessWidget {
             const SizedBox(
               height: 14,
             ),
-            customTextfaild(labelText: "Full name"),
+            // customTextfaild(labelText: "Full name",controller: FullnameController),
             const SizedBox(
               height: 14,
             ),

@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/utils/Cubits/cubit/user_cubit.dart';
 import 'package:foryou/core/utils/routes.dart';
+import 'package:foryou/core/widget/customTextFaild.dart';
 import 'package:hive/hive.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
 import 'firebase_options.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'mmmmmm.dart';
 
 late List<CameraDescription> cameras;
 
@@ -23,7 +26,11 @@ Future<void> main() async {
   );
 
   cameras = await availableCameras();
-  runApp(MultiBlocProvider(
+  runApp
+// (MaterialApp(home: customTextfaildd(labelText: "labelText"),));
+
+
+  (MultiBlocProvider(
     providers: [
       BlocProvider(
         create: (context) => UserCubit(),

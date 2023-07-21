@@ -10,6 +10,7 @@ import '../../../core/widget/customTextFaild.dart';
 import '../../../core/widget/googlebuttom.dart';
 import '../../../core/widget/headertext.dart';
 import '../../../core/widget/textbuttom.dart';
+import '../../../mmmmmm.dart';
 
 // ignore: camel_case_types
 class loginView extends StatelessWidget {
@@ -17,6 +18,8 @@ class loginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emaillController = TextEditingController();
+    TextEditingController passwordlController = TextEditingController();
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         return Scaffold(
@@ -34,11 +37,11 @@ class loginView extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * .1,
                   ),
-                  customTextfaild(labelText: "Email"),
+                  customTextfaildd(labelText: "Email",controller: emaillController),
                   const SizedBox(
                     height: 10,
                   ),
-                  customTextfaild(labelText: "Password"),
+                  customTextfaildd(labelText: "Password",controller: passwordlController),
                   textbuttom(
                       text: "Forget Your password?",
                       onPressed: () {

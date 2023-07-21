@@ -5,6 +5,7 @@ import '../../../core/widget/arrowAppBar.dart';
 import '../../../core/widget/customElevationButtom.dart';
 import '../../../core/widget/customTextFaild.dart';
 import '../../../core/widget/headertext.dart';
+import '../../../mmmmmm.dart';
 
 // ignore: camel_case_types
 class forgetPssView extends StatelessWidget {
@@ -12,6 +13,8 @@ class forgetPssView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: arrowappbar(onPressed: () {
@@ -31,7 +34,7 @@ class forgetPssView extends StatelessWidget {
                   " Please, enter your email address. You will receive a link to create a new password via email."),
               Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 25),
-                child: customTextfaild(labelText: "Email"),
+                child: customTextfaildd(labelText: "Email",controller: passwordController),
               ),
               SizedBox(
                 width: double.infinity,

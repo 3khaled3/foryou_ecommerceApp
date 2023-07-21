@@ -1,89 +1,100 @@
+import 'package:flutter/material.dart';
 
-// class CarouselWithIndicatorDemo extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-//     return _CarouselWithIndicatorState();
-//   }
-// }
+class customTextfaildd extends StatelessWidget {
+  final String labelText;
+  final Function(String)? onChanged;
+  final TextEditingController controller;
 
-// class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
-//   int _current = 0;
-//   final CarouselController _controller = CarouselController();
+  final String? Function(String?)? validator;
+  const customTextfaildd({
+    Key? key,
+    required this.labelText,
+    required this.controller,
+    this.onChanged,
+    this.validator,
+  }) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Carousel with indicator controller demo')),
-//       body: Column(children: [
-//         CarouselSlider(
-//           items: imageSliders,
-//           carouselController: _controller,
-//           options: CarouselOptions(
-//               autoPlay: true,
-//               enlargeCenterPage: true,
-//               aspectRatio: 2.0,
-//               onPageChanged: (index, reason) {
-//                 setState(() {
-//                   _current = index;
-//                 });
-//               }),
-//         ),
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: imgList.asMap().entries.map((entry) {
-//             return GestureDetector(
-//               onTap: () => _controller.animateToPage(entry.key),
-//               child: Container(
-//                 width: 12.0,
-//                 height: 12.0,
-//                 margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-//                 decoration: BoxDecoration(
-//                     shape: BoxShape.circle,
-//                     color: (Theme.of(context).brightness == Brightness.dark
-//                             ? Colors.white
-//                             : Colors.black)
-//                         .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-//               ),
-//             );
-//           }).toList(),
-//         ),
-//       ]),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    // Set the initial value here
 
-// final List<String> imgList = [
-//   'assets/styles/1.jpg',
-//   'assets/styles/2.jpg',
-//   'assets/styles/3.jpg',
-//   'assets/styles/4.jpg',
-// ];
+    return SizedBox(
+      // height: 60,
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TextFormField(
+                controller: controller,
+                validator: validator,
+                onChanged: onChanged,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: const EdgeInsets.only(
+                      top: 16, left: 12, right: 12, bottom: 33),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.red),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  labelStyle: const TextStyle(color: Colors.grey),
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
+                ),
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 11,left: 4,right: 4),
+              child: TextFormField(
+                controller: controller,
+                // validator: validator,
+                onChanged: onChanged,
 
-// final List<Widget> imageSliders = imgList
-//     .map((item) => Container(
-//           child: Container(
-//             margin: EdgeInsets.all(5.0),
-//             child: ClipRRect(
-//                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                 child: Stack(
-//                   children: <Widget>[
-//                     Image.asset(item, fit: BoxFit.cover, width: 1000.0),
-//                     Container(
-//                       decoration: BoxDecoration(
-//                         gradient: LinearGradient(
-//                           colors: [
-//                             Color.fromARGB(200, 0, 0, 0),
-//                             Color.fromARGB(0, 0, 0, 0)
-//                           ],
-//                           begin: Alignment.bottomCenter,
-//                           end: Alignment.topCenter,
-//                         ),
-//                       ),
-//                       padding: EdgeInsets.symmetric(
-//                           vertical: 10.0, horizontal: 20.0),
-//                     ),
-//                   ],
-//                 )),
-//           ),
-//         ))
-//     .toList();
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(left: 12, right: 12),
+                  enabledBorder: OutlineInputBorder(
+                    // borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  // fillColor: Colors.yellow,
+                  labelText: labelText,
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  labelStyle: const TextStyle(color: Colors.grey),
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
