@@ -1,8 +1,8 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foryou/core/utils/Cubits/cubit/user_cubit.dart';
+import 'package:foryou/core/utils/Cubits/userCubit/user_cubit.dart';
 import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/core/widget/SnakePar.dart';
 import 'package:go_router/go_router.dart';
@@ -29,110 +29,114 @@ class registerView extends StatelessWidget {
     GlobalKey<FormState> Kform = GlobalKey();
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        return state is Waitting?Indicator(): Scaffold(
-          backgroundColor: kPrimaryColor,
-          appBar: arrowappbar(onPressed: () {}),
-          body:Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Form(
-                key: Kform,
-                child: Column(
-                  children: [
-                    headerText(titel: "Sign up"),
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * .1,
-                    ),
-                    customTextfaildd(
-                      controller: nameController,
-                      labelText: "Name",
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your name';
-                        } else {
-                          BlocProvider.of<UserCubit>(context).userName = value;
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    customTextfaildd(
-                      labelText: "Email",
-                      controller: emailController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter  Email';
-                        } else {
-                          BlocProvider.of<UserCubit>(context).emailAddress =
-                              value;
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    customTextfaildd(
-                      labelText: "Password",
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter password';
-                        } else {
-                          BlocProvider.of<UserCubit>(context).password = value;
-                          return null;
-                        }
-                      },
-                    ),
-                    textbuttom(
-                        text: "Already have an account?",
-                        onPressed: () {
-                          GoRouter.of(context).push(AppRouter.kloginview);
-                        }),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: customElevationButtom(
-                          text: "SIGN UP",
-                          onPressed: () async {
-                            if (Kform.currentState!.validate()) {
-                              await BlocProvider.of<UserCubit>(context)
-                                  .createAccountAndSendEmailVerification();
-                              
-
-                              final state =
-                                  BlocProvider.of<UserCubit>(context).state;
-
-                              if (state is Success) {
-                                showSnackbarMessage(
-                                  context,
-                                  "Check your mail and Verifiy your account",
-                                  Colors.green,
-                                );
-                              } else if (state is Error) {
-                                final errorMessage = (state).errorMessage;
-                                showSnackbarMessage(
-                                    context, errorMessage, Colors.red);
+        return state is Waitting
+            ? const Indicator()
+            : Scaffold(
+                backgroundColor: kPrimaryColor,
+                appBar: arrowappbar(onPressed: () {}),
+                body: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Form(
+                      key: Kform,
+                      child: Column(
+                        children: [
+                          headerText(titel: "Sign up"),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * .1,
+                          ),
+                          customTextfaildd(
+                            controller: nameController,
+                            labelText: "Name",
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your name';
+                              } else {
+                                BlocProvider.of<UserCubit>(context).userName =
+                                    value;
+                                return null;
                               }
-                            }
-                          }),
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          customTextfaildd(
+                            labelText: "Email",
+                            controller: emailController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter  Email';
+                              } else {
+                                BlocProvider.of<UserCubit>(context)
+                                    .emailAddress = value;
+                                return null;
+                              }
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          customTextfaildd(
+                            labelText: "Password",
+                            controller: passwordController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter password';
+                              } else {
+                                BlocProvider.of<UserCubit>(context).password =
+                                    value;
+                                return null;
+                              }
+                            },
+                          ),
+                          textbuttom(
+                              text: "Already have an account?",
+                              onPressed: () {
+                                GoRouter.of(context).push(AppRouter.kloginview);
+                              }),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: customElevationButtom(
+                                text: "SIGN UP",
+                                onPressed: () async {
+                                  if (Kform.currentState!.validate()) {
+                                    await BlocProvider.of<UserCubit>(context)
+                                        .createAccountAndSendEmailVerification();
+
+                                    final state =
+                                        BlocProvider.of<UserCubit>(context)
+                                            .state;
+
+                                    if (state is Success) {
+                                      showSnackbarMessage(
+                                        context,
+                                        "Check your mail and Verifiy your account",
+                                        Colors.green,
+                                      );
+                                    } else if (state is Error) {
+                                      final errorMessage = (state).errorMessage;
+                                      showSnackbarMessage(
+                                          context, errorMessage, Colors.red);
+                                    }
+                                  }
+                                }),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * .12,
+                          ),
+                          const Text("Or sign up with"),
+                          googlebuttom(onPressed: () {})
+                        ],
+                      ),
                     ),
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * .12,
-                    ),
-                    const Text("Or sign up with"),
-                    googlebuttom(onPressed: () {})
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-        );
+              );
       },
     );
   }

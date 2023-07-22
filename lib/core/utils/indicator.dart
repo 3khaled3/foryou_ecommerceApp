@@ -9,9 +9,10 @@ class Indicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       body: Center(
         child: LoadingAnimationWidget.discreteCircle(
-            color: Colors.black,
+            color: Colors.white,
             size: 70,
             secondRingColor: Colors.green,
             thirdRingColor: Colors.purple),

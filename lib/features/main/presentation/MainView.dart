@@ -57,17 +57,17 @@ class _MainViewState extends State<MainView> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-             activeIcon:Icon(Icons.shopping_cart),
-            icon: Icon(Icons.shopping_cart_outlined),            
+            activeIcon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart_outlined),
             label: "Shop",
           ),
           BottomNavigationBarItem(
-             activeIcon:Icon(Icons.shopping_bag),
+            activeIcon: Icon(Icons.shopping_bag),
             icon: Icon(Icons.shopping_bag_outlined),
             label: 'Bag',
           ),
           BottomNavigationBarItem(
-            activeIcon:Icon(Icons.favorite_rounded),
+            activeIcon: Icon(Icons.favorite_rounded),
             icon: Icon(Icons.favorite_border_rounded),
             label: 'Favorites',
           ),

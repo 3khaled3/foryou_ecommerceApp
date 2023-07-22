@@ -19,22 +19,19 @@ class SettingsButtoms extends StatelessWidget {
     return Material(
         // color: Colors.white,
         child: InkWell(
-          onTap: onPressed,
-          child: ListTile(
-            title: Text(
-              title,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
-            ),
-            subtitle: Text(
-              Suptitle,
-            ),
-            subtitleTextStyle: const TextStyle(
-                color: Colors.grey, fontSize: 11, fontWeight: FontWeight.w400),
-           
-          ),
-        ));
+      onTap: onPressed,
+      child: ListTile(
+        title: Text(
+          title,
+          style: const TextStyle(
+              color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+        subtitle: Text(
+          Suptitle,
+        ),
+        subtitleTextStyle: const TextStyle(
+            color: Colors.grey, fontSize: 11, fontWeight: FontWeight.w400),
+      ),
+    ));
   }
 }

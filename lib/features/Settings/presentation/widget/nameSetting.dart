@@ -47,11 +47,10 @@ class nameSettingBottomSheetView extends StatelessWidget {
             const SizedBox(
               height: 14,
             ),
-           
+
             SizedBox(
                 width: double.infinity,
-                child: customElevationButtom(
-                    text: "SAVE", onPressed: () {})),
+                child: customElevationButtom(text: "SAVE", onPressed: () {})),
             const SizedBox(
               height: 14,
             ),

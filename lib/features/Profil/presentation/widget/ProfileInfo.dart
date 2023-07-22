@@ -25,7 +25,10 @@ class _UserInformationState extends State<UserInformation> {
           ),
           SizedBox(height: 8),
           Text("dev.khaledtarek@gmail.com",
-              style: TextStyle(color: Colors.grey,fontSize: 14,fontWeight: FontWeight.w500)),
+              style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500)),
           SizedBox(height: 8),
         ],
       ),

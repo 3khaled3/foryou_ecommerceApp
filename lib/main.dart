@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foryou/core/utils/Cubits/cubit/user_cubit.dart';
+import 'package:foryou/core/utils/Cubits/userCubit/user_cubit.dart';
 import 'package:foryou/core/utils/routes.dart';
 import 'package:foryou/core/widget/customTextFaild.dart';
 import 'package:hive/hive.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
+import 'core/utils/Cubits/cubit/api_cubit.dart';
 import 'firebase_options.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -29,11 +30,13 @@ Future<void> main() async {
   runApp
 // (MaterialApp(home: customTextfaildd(labelText: "labelText"),));
 
-
-  (MultiBlocProvider(
+      (MultiBlocProvider(
     providers: [
       BlocProvider(
         create: (context) => UserCubit(),
+      ),
+      BlocProvider(
+        create: (context) => ApiCubit(),
       ),
     ],
     child: MaterialApp.router(

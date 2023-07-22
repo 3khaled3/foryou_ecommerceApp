@@ -20,13 +20,13 @@ class RatingRow extends StatelessWidget {
             if (index < rating) {
               return Icon(
                 Icons.star,
-                color:  Color(0xffFFBA49),
+                color: Color(0xffFFBA49),
                 size: iconSize,
               );
             } else {
               return Icon(
                 Icons.star_border,
-                color:  Color(0xffFFBA49),
+                color: Color(0xffFFBA49),
                 size: iconSize,
               );
             }
@@ -35,9 +35,7 @@ class RatingRow extends StatelessWidget {
         Text(
           "($ratingNum)",
           style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 11,
-              fontWeight: FontWeight.normal),
+              color: Colors.grey, fontSize: 11, fontWeight: FontWeight.normal),
         )
       ],
     );

@@ -9,7 +9,9 @@ class checkoutPronoCode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Divider(height: 1,),
+        const Divider(
+          height: 1,
+        ),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -58,7 +60,8 @@ class checkoutPronoCode extends StatelessWidget {
               SizedBox(
                   height: 48,
                   width: double.infinity,
-                  child: customElevationButtom(text: "CHECK OUT", onPressed: () {}))
+                  child: customElevationButtom(
+                      text: "CHECK OUT", onPressed: () {}))
             ],
           ),
         ),

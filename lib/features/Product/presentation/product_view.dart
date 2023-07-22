@@ -27,7 +27,6 @@ class productView extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * .03,
                   ),
-                  
                   ListTile(
                     title: Text("H&M",
                         style: TextStyle(
@@ -39,7 +38,7 @@ class productView extends StatelessWidget {
                             color: Colors.grey,
                             fontWeight: FontWeight.w400,
                             fontSize: 11)),
-                            trailing:  Text("\$19.99",
+                    trailing: Text("\$19.99",
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
@@ -51,11 +50,12 @@ class productView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Text("Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 11)),
+                    child: Text(
+                        "Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 11)),
                   ),
                   titelcatogrey(
                     titel: "You can also like this",

@@ -17,7 +17,8 @@ class FilterAndSortRow extends StatelessWidget {
         Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20.0,right:20.0 ,top: 20,bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 20, bottom: 10),
               child: GestureDetector(
                 onTap: () {
                   showbottomSheet(
@@ -40,7 +41,8 @@ class FilterAndSortRow extends StatelessWidget {
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0,right:20.0 ,top: 20.0,bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 20.0, bottom: 10),
               child: GestureDetector(
                 onTap: () {
                   showbottomSheet(
@@ -63,7 +65,12 @@ class FilterAndSortRow extends StatelessWidget {
             )
           ],
         ),
-        const Divider(height: 1,thickness: 1,indent: 0,endIndent: 0,),
+        const Divider(
+          height: 1,
+          thickness: 1,
+          indent: 0,
+          endIndent: 0,
+        ),
       ],
     );
   }

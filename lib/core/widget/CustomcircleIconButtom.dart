@@ -3,10 +3,13 @@
 import 'package:flutter/material.dart';
 
 class circleIconButtom extends StatelessWidget {
- final icon;
- final double? iconsize;
- final void Function()? onTap;
-  const circleIconButtom({required this.icon,required this.onTap, this.iconsize=16,
+  final icon;
+  final double? iconsize;
+  final void Function()? onTap;
+  const circleIconButtom({
+    required this.icon,
+    required this.onTap,
+    this.iconsize = 16,
     super.key,
   });
 
@@ -32,8 +35,9 @@ class circleIconButtom extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           customBorder: const CircleBorder(),
-          child:  Icon(
-            icon,size:iconsize ,
+          child: Icon(
+            icon,
+            size: iconsize,
           ),
         ),
       ),

@@ -1,4 +1,3 @@
-
 import 'package:foryou/features/forgetpssword/presentation/forgetpass_view.dart';
 import 'package:foryou/features/login/presentation/login_view.dart';
 import 'package:foryou/features/main/presentation/MainView.dart';
@@ -29,7 +28,6 @@ abstract class AppRouter {
         path: kHomeView,
         builder: (context, state) => const MainView(),
       ),
-     
     ],
   );
 }

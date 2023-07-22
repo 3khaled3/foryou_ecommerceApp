@@ -19,25 +19,23 @@ class profileButtoms extends StatelessWidget {
     return Material(
         // color: Colors.white,
         child: InkWell(
-          onTap: onPressed,
-          child: ListTile(
-            title: Text(
-              title,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
-            ),
-            subtitle: Text(
-              Suptitle,
-            ),
-            subtitleTextStyle: const TextStyle(
-                color: Colors.grey, fontSize: 11, fontWeight: FontWeight.w400),
-            trailing: const Icon(
-              Icons.arrow_forward_ios_outlined,
-              color: Colors.black,
-            ),
-          ),
-        ));
+      onTap: onPressed,
+      child: ListTile(
+        title: Text(
+          title,
+          style: const TextStyle(
+              color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+        subtitle: Text(
+          Suptitle,
+        ),
+        subtitleTextStyle: const TextStyle(
+            color: Colors.grey, fontSize: 11, fontWeight: FontWeight.w400),
+        trailing: const Icon(
+          Icons.arrow_forward_ios_outlined,
+          color: Colors.black,
+        ),
+      ),
+    ));
   }
 }

@@ -13,7 +13,8 @@ class passwoedSettingBottomSheetView extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController OldPasswordController = TextEditingController();
     TextEditingController currentPasswordController = TextEditingController();
-    TextEditingController repitcurrentPasswordController = TextEditingController();
+    TextEditingController repitcurrentPasswordController =
+        TextEditingController();
     return Container(
       decoration: const BoxDecoration(
           color: kPrimaryColor,

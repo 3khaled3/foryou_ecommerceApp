@@ -45,17 +45,16 @@ class UserCubit extends Cubit<UserState> {
   }
 
   login() async {
-    try {print("1111111111111111111111111111111111111");
+    try {
       emit(Waitting());
       if (emailAddress != null && emailAddress != null) {
         final credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
                 email: emailAddress!, password: password!);
         if (credential.user!.emailVerified == true) {
+          emit(Success());
           box.put('emailAddress', emailAddress);
           box.put('password', password);
-
-          emit(Success());
         } else {
           User? user = credential.user;
           await user!.sendEmailVerification();
@@ -68,7 +67,9 @@ class UserCubit extends Cubit<UserState> {
         emit(Error("No user found for that email."));
       } else if (e.code == 'wrong-password') {
         emit(Error("Wrong password provided for that user."));
-      }else {  emit(Error(e.toString()));}
+      } else {
+        emit(Error(e.toString()));
+      }
     }
   }
 
@@ -162,9 +163,6 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 }
-
-
-
 
 //   Future<UserCredential> signInWithGoogle() async {
 //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();

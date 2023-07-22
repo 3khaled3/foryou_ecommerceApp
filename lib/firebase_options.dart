@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '34923241454',
     projectId: 'eco4u-d794c',
     storageBucket: 'eco4u-d794c.appspot.com',
-    iosClientId: '34923241454-o3am6luh514uehjb2hjjhso9ve485ft7.apps.googleusercontent.com',
+    iosClientId:
+        '34923241454-o3am6luh514uehjb2hjjhso9ve485ft7.apps.googleusercontent.com',
     iosBundleId: 'com.example.foryou',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '34923241454',
     projectId: 'eco4u-d794c',
     storageBucket: 'eco4u-d794c.appspot.com',
-    iosClientId: '34923241454-t5vmkc06ge7idkrvrfc3t7ikrjrnu1l1.apps.googleusercontent.com',
+    iosClientId:
+        '34923241454-t5vmkc06ge7idkrvrfc3t7ikrjrnu1l1.apps.googleusercontent.com',
     iosBundleId: 'com.example.foryou.RunnerTests',
   );
 }
