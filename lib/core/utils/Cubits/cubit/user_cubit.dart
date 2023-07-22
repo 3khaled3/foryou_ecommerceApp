@@ -54,21 +54,21 @@ class UserCubit extends Cubit<UserState> {
         if (credential.user!.emailVerified == true) {
           box.put('emailAddress', emailAddress);
           box.put('password', password);
-print("3333333333333333333333333333");
+
           emit(Success());
         } else {
           User? user = credential.user;
           await user!.sendEmailVerification();
-print("22222222222222222222222");
+
           emit(Error("Check your mail and Verifiy your account."));
         }
       }
-    } on FirebaseAuthException catch (e) {print("444444444444444444444444");
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         emit(Error("No user found for that email."));
       } else if (e.code == 'wrong-password') {
         emit(Error("Wrong password provided for that user."));
-      }
+      }else {  emit(Error(e.toString()));}
     }
   }
 
