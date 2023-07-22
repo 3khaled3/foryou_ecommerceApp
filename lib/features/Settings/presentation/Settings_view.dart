@@ -21,15 +21,17 @@ class SettingsView extends StatelessWidget {
                 title: "Personal Information",
                 Suptitle: "Name, Date of Birth",
                 onPressed: () {
-                   showbottomSheet(
-                      context: context, widget: const nameSettingBottomSheetView());
+                  showbottomSheet(
+                      context: context,
+                      widget: const nameSettingBottomSheetView());
                 }),
             SettingsButtoms(
                 title: "Password",
                 Suptitle: "Password Setting",
                 onPressed: () {
-                   showbottomSheet(
-                      context: context, widget: const passwoedSettingBottomSheetView());
+                  showbottomSheet(
+                      context: context,
+                      widget: const passwoedSettingBottomSheetView());
                 }),
           ],
         ));
