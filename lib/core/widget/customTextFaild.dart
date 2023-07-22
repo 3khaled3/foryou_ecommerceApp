@@ -47,13 +47,8 @@ class customTextfaild extends StatelessWidget {
             floatingLabelBehavior: FloatingLabelBehavior.auto,
           ),
         ),
-        Positioned(
-          bottom: 0,height: 0,
-          child: Text("data")
-        )
+        Positioned(bottom: 0, height: 0, child: Text("data"))
       ],
     );
   }
 }
-
-
