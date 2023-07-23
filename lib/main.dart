@@ -8,6 +8,7 @@ import 'package:hive/hive.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
 import 'core/utils/Cubits/cubit/api_cubit.dart';
+
 import 'firebase_options.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

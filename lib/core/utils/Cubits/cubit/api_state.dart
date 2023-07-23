@@ -9,11 +9,12 @@ abstract class ApiState extends Equatable {
 
 class ApiInitial extends ApiState {}
 
-class Waitting extends ApiState {}
 
-class Success extends ApiState {}
+class Waitting extends ApiState{}
 
-class Error extends ApiState {
+class Success extends ApiState{}
+
+class Error extends ApiState{
   final String errorMessage;
 
   Error(this.errorMessage);

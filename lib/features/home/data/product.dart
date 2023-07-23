@@ -1,91 +1,43 @@
-import 'dart:convert';
+class Product {
+  final int id;
+  final String title;
+  final String description;
+  final double price;
+  final double discountPercentage;
+  final double rating;
+  final int stock;
+  final String brand;
+  final String category;
+  final String thumbnail;
+  final List<String> images;
 
-import 'package:equatable/equatable.dart';
-
-class Product extends Equatable {
-  final int? id;
-  final String? title;
-  final String? description;
-  final int? price;
-  final double? discountPercentage;
-  final double? rating;
-  final int? stock;
-  final String? brand;
-  final String? category;
-  final String? thumbnail;
-  final List<String>? images;
-
-  const Product({
-    this.id,
-    this.title,
-    this.description,
-    this.price,
-    this.discountPercentage,
-    this.rating,
-    this.stock,
-    this.brand,
-    this.category,
-    this.thumbnail,
-    this.images,
+  Product({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.discountPercentage,
+    required this.rating,
+    required this.stock,
+    required this.brand,
+    required this.category,
+    required this.thumbnail,
+    required this.images,
   });
 
-
-    factory Product.fromJson(Map<String, dynamic> data) {
+  factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: data['id'] as int?,
-      title: data['title'] as String?,
-      description: data['description'] as String?,
-      price: data['price'] as int?,
-      discountPercentage: (data['discountPercentage'] as num?)?.toDouble(),
-      rating: (data['rating'] as num?)?.toDouble(),
-      stock: data['stock'] as int?,
-      brand: data['brand'] as String?,
-      category: data['category'] as String?,
-      thumbnail: data['thumbnail'] as String?,
-      images: (data['images'] as List<dynamic>?)?.map((image) => image.toString()).toList(),
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      price: json['price'].toDouble(),
+      discountPercentage: json['discountPercentage'].toDouble(),
+      rating: json['rating'].toDouble(),
+      stock: json['stock'],
+      brand: json['brand'],
+      category: json['category'],
+      thumbnail: json['thumbnail'],
+      images: List<String>.from(json['images']),
     );
-  }
-
-  Map<String, dynamic> toMap() => {
-        'id': id,
-        'title': title,
-        'description': description,
-        'price': price,
-        'discountPercentage': discountPercentage,
-        'rating': rating,
-        'stock': stock,
-        'brand': brand,
-        'category': category,
-        'thumbnail': thumbnail,
-        'images': images,
-      };
-
-  /// `dart:convert`
-  ///
-  /// Parses the string and returns the resulting Json object as [Product].
-  factory Product.fromJson(String data) {
-    return Product.fromMap(json.decode(data) as Map<String, dynamic>);
-  }
-
-  /// `dart:convert`
-  ///
-  /// Converts [Product] to a JSON string.
-  String toJson() => json.encode(toMap());
-
-  @override
-  List<Object?> get props {
-    return [
-      id,
-      title,
-      description,
-      price,
-      discountPercentage,
-      rating,
-      stock,
-      brand,
-      category,
-      thumbnail,
-      images,
-    ];
   }
 }

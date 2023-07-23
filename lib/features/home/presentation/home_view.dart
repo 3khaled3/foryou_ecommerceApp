@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foryou/core/utils/Cubits/cubit/api_cubit.dart';
 import 'package:foryou/features/home/presentation/widget/homeCatogrey.dart';
-
 import 'package:foryou/features/home/presentation/widget/titelCatogry.dart';
 import '../../../constant.dart';
+import '../../../core/utils/Cubits/cubit/api_cubit.dart';
 import 'widget/saleListview.dart';
 
 // ignore: camel_case_types
@@ -30,7 +29,9 @@ class homeView extends StatelessWidget {
                   supTitel: "Super summer sale",
                   onPressed: () async {
                     print("555555555555555555555");
-                    await BlocProvider.of<ApiCubit>(context).fetch();
+                    await BlocProvider.of<ApiCubit>(context).fetchcategoriesImage();
+                    print(BlocProvider.of<ApiCubit>(context).categories);
+
                   },
                 ),
                 saleListView(),

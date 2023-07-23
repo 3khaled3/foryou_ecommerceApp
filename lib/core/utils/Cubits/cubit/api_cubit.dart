@@ -2,39 +2,82 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../features/home/data/product_model.dart';
+import '../../../../features/home/data/product.dart';
 
 part 'api_state.dart';
 
 class ApiCubit extends Cubit<ApiState> {
   ApiCubit() : super(ApiInitial());
-  List<ProductModel> products = [];
-  Future<void> fetch() async {
-    print("555555555555555555555555555555555555");
-    try {
-      emit(Waitting());
+  List<Product> products = [];
+  List<String> categories = [];
+  Map<String, String> categoriesimage = {};
+  Future<void> fetchProducts() async {
+    emit(Waitting());
+    final dio = Dio();
+    final Response response = await dio.get('https://dummyjson.com/products');
 
-      final dio = Dio();
-      final Response response = await dio.get('https://dummyjson.com/products');
+    if (response.statusCode == 200) {
+      // final List<dynamic> data = response.data['products'];
+      //      data.map((json) => Product.fromJson(json)).toList();
+      List<dynamic> productsJson = response.data['products'];
+      List<Product> product =
+          productsJson.map((json) => Product.fromJson(json)).toList();
+      products.clear();
+      for (var element in product) {
+        products.add(element);
+      }
+      emit(Success());
+      // return products;
+    } else {
+      throw Exception('Failed to fetch products');
+    }
+  }
+
+  Future<void> fetchcategories() async {
+    emit(Waitting());
+    final dio = Dio();
+
+    final Response responsecategories =
+        await dio.get('https://dummyjson.com/products/categories');
+
+    if (responsecategories.statusCode == 200) {
+      categories.clear();
+      List<dynamic> categoriesJson = responsecategories.data;
+      for (var element in categoriesJson) {
+        categories.add(element);
+      }
+
+      print(categoriesJson);
+      emit(Success());
+      // return products;
+    } else {
+      throw Exception('Failed to fetch products');
+    }
+  }
+
+  Future<void> fetchcategoriesImage() async {
+    emit(Waitting());
+    final dio = Dio();
+    await fetchcategories();
+    categoriesimage.clear();
+    for (var i = 0; i < categories.length; i++) {
+      String request = categories[0];
+      final Response response =
+          await dio.get('https://dummyjson.com/products/category/$request');
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> res = response.data;
-        List<dynamic> productsData = res["products"];
+        List<dynamic> productsJson = response.data['products'];
+        List<Product> product =
+            productsJson.map((json) => Product.fromJson(json)).toList();
+        ;
+        categoriesimage.addAll({categories[i]: product[0].images[0]});
 
-        // Convert the List of Maps to List of ProductModel instances
-        products = productsData.map((productData) {
-          return ProductModel.fromJson(productData);
-        }).toList();
-        print("success");
-
-        emit(Success());
+        // return products;
       } else {
-        print("Failed to fetch data");
-        emit(Error('Failed to fetch data'));
+        throw Exception('Failed to fetch products');
       }
-    } catch (e) {
-      print(e.toString());
-      emit(Error(e.toString()));
     }
+    print(categoriesimage);
+    emit(Success());
   }
 }
