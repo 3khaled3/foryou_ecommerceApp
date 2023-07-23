@@ -13,59 +13,62 @@ class homeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      body: Column(
-        children: [
-          const homeCatogrey(),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * .03,
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Expanded(
+          child: Column(
+            children: [
+              const homeCatogrey(),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .03,
+              ),
+              FutureBuilder<void>(
+                future:
+                    BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Center(
+                      child: Text("Error loading data"),
+                    );
+                  } else {
+                    final a =
+                        BlocProvider.of<ApiCubit>(context).categoriesProduct;
+                    List b = BlocProvider.of<ApiCubit>(context).categories;
+                    return ListView.builder(physics: const NeverScrollableScrollPhysics(),
+                      itemCount: a.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            titelcatogrey(
+                              titel: b[index],
+                              onPressed: () async {
+                                // print("555555555555555555555");
+                                // await BlocProvider.of<ApiCubit>(context).fetchcategoriesImage();
+                                // print(BlocProvider.of<ApiCubit>(context).categories);
+                              },
+                            ),
+                            saleListView(
+                              products: BlocProvider.of<ApiCubit>(context)
+                                  .categoriesProduct["${b[index]}"],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.sizeOf(context).height * .01,
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+            ],
           ),
-          Expanded(
-            child: FutureBuilder<void>(
-              future:
-                  BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Center(
-                    child: Text("Error loading data"),
-                  );
-                } else {
-                  final a =
-                      BlocProvider.of<ApiCubit>(context).categoriesProduct;
-                  List b = BlocProvider.of<ApiCubit>(context).categories;
-                  return ListView.builder(
-                    itemCount: a.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          titelcatogrey(
-                            titel: b[index],
-                            onPressed: () async {
-                              // print("555555555555555555555");
-                              // await BlocProvider.of<ApiCubit>(context).fetchcategoriesImage();
-                              // print(BlocProvider.of<ApiCubit>(context).categories);
-                            },
-                          ),
-                          saleListView(
-                            products: BlocProvider.of<ApiCubit>(context)
-                                .categoriesProduct["${b[index]}"],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * .01,
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
-              },
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
