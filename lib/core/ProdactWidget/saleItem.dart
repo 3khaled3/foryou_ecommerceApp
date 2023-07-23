@@ -15,6 +15,7 @@ class SaleItem extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+            width: 170,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Padding(
@@ -45,7 +46,9 @@ class SaleItem extends StatelessWidget {
                   ),
                   Text(
                     product.title,
-                    style:  const TextStyle(overflow: TextOverflow.clip,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
@@ -81,7 +84,7 @@ class SaleItem extends StatelessWidget {
               height: 24,
               decoration: BoxDecoration(
                   color: Colors.red, borderRadius: BorderRadius.circular(20)),
-              child:  Center(
+              child: Center(
                 child: Text(
                   "-${product.discountPercentage.toInt()}%",
                   style: const TextStyle(
