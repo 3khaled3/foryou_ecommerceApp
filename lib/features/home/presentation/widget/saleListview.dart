@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foryou/core/ProdactWidget/saleItem.dart';
 
+import '../../data/product.dart';
+
 class saleListView extends StatelessWidget {
-  const saleListView({
-    super.key,
+   final List<Product> products;
+  const saleListView({required this.products
+    
   });
 
   @override
@@ -16,10 +19,10 @@ class saleListView extends StatelessWidget {
             width: 170,
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
-              itemCount: 5,
+              itemCount: products.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return saleItem();
+                return SaleItem(product:products[index] ,);
               },
             ),
           ),

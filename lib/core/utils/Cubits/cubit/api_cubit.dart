@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../features/home/data/product.dart';
-
+import 'package:retry/retry.dart';
 part 'api_state.dart';
 
 class ApiCubit extends Cubit<ApiState> {
@@ -11,6 +11,8 @@ class ApiCubit extends Cubit<ApiState> {
   List<Product> products = [];
   List<String> categories = [];
   Map<String, String> categoriesimage = {};
+  Map<String, dynamic> categoriesProduct = {};
+
   Future<void> fetchProducts() async {
     emit(Waitting());
     final dio = Dio();
@@ -35,6 +37,8 @@ class ApiCubit extends Cubit<ApiState> {
 
   Future<void> _fetchcategories() async {
     emit(Waitting());
+    try {
+       
     final dio = Dio();
 
     final Response responsecategories =
@@ -53,11 +57,16 @@ class ApiCubit extends Cubit<ApiState> {
     } else {
       throw Exception('Failed to fetch products');
     }
+    } catch (e) {
+      
+    }
+   
   }
 
   Future<void> fetchcategoriesImage() async {
     emit(Waitting());
     final dio = Dio();
+
     await _fetchcategories();
     categoriesimage.clear();
     print(categories.length);
@@ -68,10 +77,11 @@ class ApiCubit extends Cubit<ApiState> {
 
       if (response.statusCode == 200) {
         List<dynamic> productsJson = response.data['products'];
-        
+
         List<Product> product =
             productsJson.map((json) => Product.fromJson(json)).toList();
-            print("   $i ----------------------  ${categories[i]} ${product[0].images[0]}"); 
+        print(
+            "   $i ----------------------  ${categories[i]} ${product[0].images[0]}");
         categoriesimage.addAll({categories[i]: product[0].images[0]});
 
         // return products;
@@ -80,6 +90,41 @@ class ApiCubit extends Cubit<ApiState> {
       }
     }
     print(categoriesimage);
+    emit(Success());
+  }
+
+  Future<void> fetchcategoriesProducts() async {
+    emit(Waitting());
+    final dio = Dio();
+    await _fetchcategories();
+    categoriesProduct.clear();
+    print(categories.length);
+    for (var i = 0; i < categories.length; i++) {
+      try {
+         String request = categories[i];
+      final Response response =
+          await dio.get('https://dummyjson.com/products/category/$request');
+
+      if (response.statusCode == 200) {
+        List<dynamic> productsJson = response.data['products'];
+
+        List<Product> produc =
+            productsJson.map((json) => Product.fromJson(json)).toList();
+            
+
+        categoriesProduct.addAll({categories[i]: produc});
+ print(categoriesProduct[categories[i]][1]
+                          .title);
+        // return products;
+      } else {
+        throw Exception('Failed to fetch products');
+      }
+      } catch (e) {print("//////////////////////////////////////////${e.toString()}");
+        emit(Error(e.toString()));
+      }
+     
+    }
+    print(categoriesProduct);
     emit(Success());
   }
 }

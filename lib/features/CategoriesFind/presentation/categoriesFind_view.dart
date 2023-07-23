@@ -33,7 +33,7 @@ class CategoriesFindView extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
                 itemBuilder: (context, index) {
-                  return saleItem();
+                  // return SaleItem();
                   //
                 },
               ),

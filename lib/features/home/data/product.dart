@@ -11,6 +11,7 @@ class Product {
   final String thumbnail;
   final List<String> images;
 
+
   Product({
     required this.id,
     required this.title,

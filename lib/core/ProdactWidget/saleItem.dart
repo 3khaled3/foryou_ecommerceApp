@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foryou/core/widget/CustomcircleIconButtom.dart';
+import 'package:foryou/features/home/data/product.dart';
 import '../widget/rattingRow.dart';
 
-class saleItem extends StatelessWidget {
-  const saleItem({
-    super.key,
-  });
+class SaleItem extends StatelessWidget {
+  final Product product;
+
+  const SaleItem({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -22,45 +23,39 @@ class saleItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: Image.asset(
-                      "assets/styles/2.jpg",
+                    child: Image.network(
+                      product
+                          .thumbnail, // Replace with the actual thumbnail URL
                       width: 162,
                       height: 184,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const RatingRow(
-                    rating: 2,
-                    ratingNum: 100,
+                  RatingRow(
+                    rating: product.rating.toInt(),
+                    ratingNum: 100, // Replace with the actual number of ratings
                     iconSize: 18.00,
                   ),
-                  const Text(
-                    "Prand",
+                  Text(
+                    product.brand,
                     style: TextStyle(
                         color: Colors.grey,
                         fontSize: 11,
                         fontWeight: FontWeight.normal),
                   ),
-                  const Text(
-                    "Sport Dress",
-                    style: TextStyle(
+                  Text(
+                    product.title,
+                    style:  const TextStyle(overflow: TextOverflow.clip,
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      // SizedBox(
-                      //   height: 16,
-                      //   child:
-                      // ),
-                      // SizedBox(
-                      //   width: 5,
-                      // ),
                       SizedBox(
                         height: 16,
                         child: Text(
-                          "16\$",
+                          "${product.price}\$", // Replace with the actual price of the product
                           style: TextStyle(
                               color: Colors.red,
                               fontSize: 14,
@@ -86,10 +81,10 @@ class saleItem extends StatelessWidget {
               height: 24,
               decoration: BoxDecoration(
                   color: Colors.red, borderRadius: BorderRadius.circular(20)),
-              child: const Center(
+              child:  Center(
                 child: Text(
-                  "-15%",
-                  style: TextStyle(
+                  "-${product.discountPercentage.toInt()}%",
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 11,
                       fontWeight: FontWeight.w600),
