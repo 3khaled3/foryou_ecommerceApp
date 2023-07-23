@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/core/widget/CustomcircleIconButtom.dart';
 import 'package:foryou/features/home/data/product.dart';
 import '../widget/rattingRow.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:sqflite/sqflite.dart';
 
 class SaleItem extends StatelessWidget {
   final Product product;
@@ -24,17 +27,21 @@ class SaleItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: Image.network(
-                      product
-                          .thumbnail, // Replace with the actual thumbnail URL
-                      width: 162,
-                      height: 184,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                      child: 
+                      CachedNetworkImage(
+                    width: 162,
+                    height: 184,
+                    imageUrl: product.thumbnail,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) =>
+                            buildCircleIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  )
+                      ),
                   RatingRow(
                     rating: product.rating.toInt(),
-                    ratingNum: 100, // Replace with the actual number of ratings
+                    ratingNum: product.stock, // Replace with the actual number of ratings
                     iconSize: 18.00,
                   ),
                   Text(

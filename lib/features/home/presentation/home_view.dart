@@ -36,16 +36,10 @@ class homeView extends StatelessWidget {
                   final a =
                       BlocProvider.of<ApiCubit>(context).categoriesProduct;
                   List b = BlocProvider.of<ApiCubit>(context).categories;
-                  print(b);
-
                   return ListView.builder(
                     itemCount: a.length,
-                    // shrinkWrap: true,
+                    shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      print("------------------------------${b[index]}");
-                      print(BlocProvider.of<ApiCubit>(context)
-                          .categoriesProduct["${b[index]}"][1]
-                          .title);
                       return Column(
                         children: [
                           titelcatogrey(
@@ -59,6 +53,9 @@ class homeView extends StatelessWidget {
                           saleListView(
                             products: BlocProvider.of<ApiCubit>(context)
                                 .categoriesProduct["${b[index]}"],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * .01,
                           ),
                         ],
                       );

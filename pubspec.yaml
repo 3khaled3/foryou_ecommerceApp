@@ -58,6 +58,8 @@ dependencies:
   dio: ^5.3.0
   equatable: ^2.0.5
   retry: ^3.1.2
+  cached_network_image: ^3.2.3
+  sqflite: ^2.2.8+4
 
 dev_dependencies:
   flutter_test:

@@ -20,3 +20,13 @@ class Indicator extends StatelessWidget {
     );
   }
 }
+
+ buildCircleIndicator() {
+    return
+       Container(
+          child:LoadingAnimationWidget.flickr(
+      leftDotColor: Colors.blue,
+      rightDotColor: Colors.red,
+      size: 20,
+    ),);
+  }
