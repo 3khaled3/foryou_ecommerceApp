@@ -50,20 +50,13 @@ class saleItem extends StatelessWidget {
                   ),
                   const Row(
                     children: [
-                      SizedBox(
-                        height: 16,
-                        child: Text(
-                          "16\$",
-                          style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
-                              color: Colors.grey,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
+                      // SizedBox(
+                      //   height: 16,
+                      //   child:
+                      // ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
                       SizedBox(
                         height: 16,
                         child: Text(

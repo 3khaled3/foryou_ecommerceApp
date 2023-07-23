@@ -33,7 +33,7 @@ class ApiCubit extends Cubit<ApiState> {
     }
   }
 
-  Future<void> fetchcategories() async {
+  Future<void> _fetchcategories() async {
     emit(Waitting());
     final dio = Dio();
 
@@ -58,8 +58,9 @@ class ApiCubit extends Cubit<ApiState> {
   Future<void> fetchcategoriesImage() async {
     emit(Waitting());
     final dio = Dio();
-    await fetchcategories();
+    await _fetchcategories();
     categoriesimage.clear();
+    print(categories.length);
     for (var i = 0; i < categories.length; i++) {
       String request = categories[0];
       final Response response =
@@ -67,9 +68,10 @@ class ApiCubit extends Cubit<ApiState> {
 
       if (response.statusCode == 200) {
         List<dynamic> productsJson = response.data['products'];
+        
         List<Product> product =
             productsJson.map((json) => Product.fromJson(json)).toList();
-        ;
+            print("   $i ----------------------  ${categories[i]} ${product[0].images[0]}"); 
         categoriesimage.addAll({categories[i]: product[0].images[0]});
 
         // return products;
