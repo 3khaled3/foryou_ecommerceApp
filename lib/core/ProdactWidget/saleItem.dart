@@ -9,7 +9,7 @@ import 'package:sqflite/sqflite.dart';
 class SaleItem extends StatelessWidget {
   final Product product;
 
-  const SaleItem({required this.product});
+  const SaleItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +41,12 @@ class SaleItem extends StatelessWidget {
                       ),
                   RatingRow(
                     rating: product.rating.toInt(),
-                    ratingNum: product.stock, // Replace with the actual number of ratings
+                    ratingNum: product.stock, 
                     iconSize: 18.00,
                   ),
                   Text(
                     product.brand,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 11,
                         fontWeight: FontWeight.normal),
@@ -65,8 +65,8 @@ class SaleItem extends StatelessWidget {
                       SizedBox(
                         height: 16,
                         child: Text(
-                          "${product.price}\$", // Replace with the actual price of the product
-                          style: TextStyle(
+                          "${product.price}\$", 
+                          style: const TextStyle(
                               color: Colors.red,
                               fontSize: 14,
                               fontWeight: FontWeight.normal),
