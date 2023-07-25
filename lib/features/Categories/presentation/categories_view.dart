@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../constant.dart';
+import '../../../core/utils/Cubits/cubit/api_cubit.dart';
 import '../../../core/widget/customElevationButtom.dart';
 import 'widget/CategoriesListView.dart';
 import 'widget/appbar.dart';
@@ -9,6 +12,23 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   return FutureBuilder<void>(
+        future: BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Shimmer.fromColors(
+                baseColor: Colors.white,
+                highlightColor: Colors.grey,
+                child: Scaffold());
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text("Error loading data"),
+            );
+          } else {
+            
+    final categoriesProductmap =
+        BlocProvider.of<ApiCubit>(context).categoriesProduct;
+    List categorieslist = BlocProvider.of<ApiCubit>(context).categories;
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: Categoriesappbar(onPressed: () {}),
@@ -25,11 +45,12 @@ class CategoriesView extends StatelessWidget {
                   onPressed: () {},
                 ),
               ),
-              const CategoriesListView(),
+               CategoriesListView(  categoriesProductmap: categoriesProductmap,
+              categorieslist: categorieslist),
             ],
           ),
         ),
       ),
     );
   }
-}
+});}}

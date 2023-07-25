@@ -1,10 +1,14 @@
 // ignore_for_file: file_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CategorieItem extends StatelessWidget {
-  const CategorieItem({
-    super.key,
+  final  imageUrl;
+  final  Categorie;
+
+  const CategorieItem({required this.Categorie,required this.imageUrl
+    
   });
 
   @override
@@ -26,13 +30,13 @@ class CategorieItem extends StatelessWidget {
                   ),
                 ),
                 height: 100,
-                child: const Align(
+                child:  Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      "data",
-                      style: TextStyle(
+                      Categorie,
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
                       ),
@@ -43,13 +47,13 @@ class CategorieItem extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/styles/1.jpg"),
+                    image: CachedNetworkImageProvider(imageUrl),
                     fit: BoxFit.cover,
                   ),
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(10),
                     bottomRight: Radius.circular(10),
                   ),
