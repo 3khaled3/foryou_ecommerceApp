@@ -1,105 +1,123 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
+import '../utils/indicator.dart';
+import '../utils/routes.dart';
 import '../widget/CustomcircleIconButtom.dart';
 
 // ignore: camel_case_types
 class BagItem extends StatelessWidget {
+  final Map<String, dynamic> item;
   const BagItem({
+    required this.item,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 104,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: .001,
-            blurRadius: 1,
-            offset: const Offset(0, 1),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(20), topLeft: Radius.circular(20)),
-            child: Image.asset(
-              "assets/styles/1.jpg",
-              fit: BoxFit.cover,
-              height: 104,
-              width: 104,
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context)
+            .push(AppRouter.kproductView, extra: item["product"]);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 104,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: .001,
+              blurRadius: 1,
+              offset: const Offset(0, 1),
             ),
-          ),
-          const SizedBox(
-            width: 11,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text("shirt",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                    )),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text("Prand",
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 11)),
-                const Text("\$ 198.00",
-                    style: TextStyle(
+          ],
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  topLeft: Radius.circular(20)),
+               child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                height: 104,
+                width: 104,
+                      imageUrl: item["product"].thumbnail,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) =>
+                              buildCircleIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    )
+            ),
+            const SizedBox(
+              width: 11,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(item["product"].title,
+                      style: const TextStyle(
+                        fontSize: 16,
                         color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14)),
-                const Spacer(),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    circleIconButtom(
-                      icon: LineIcons.plus,
-                      onTap: () {},
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text("5",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14)),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    circleIconButtom(
-                      icon: LineIcons.minus,
-                      onTap: () {},
-                    ),
-                    const Spacer(),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Color.fromARGB(111, 0, 0, 0),
-                        ))
-                  ],
-                ),
-              ],
+                        fontWeight: FontWeight.w600,
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(item["product"].brand,
+                      style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 11)),
+                   Text("\$ ${item["product"].price}",
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14)),
+                  const Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      circleIconButtom(
+                        icon: LineIcons.plus,
+                        onTap: () {},
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text("${item["qu"]}",
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14)),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      circleIconButtom(
+                        icon: LineIcons.minus,
+                        onTap: () {},
+                      ),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Color.fromARGB(111, 0, 0, 0),
+                          ))
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
