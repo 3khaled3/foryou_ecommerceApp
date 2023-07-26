@@ -6,6 +6,7 @@ part 'bag_state.dart';
 
 class BagCubit extends Cubit<BagState> {
   BagCubit() : super(BagInitial());
+  List<Map<String, dynamic>> existingItems = [];
   // ignore: non_constant_identifier_names
   AddToBag(id) async {
     CollectionReference bagCollection =
@@ -14,10 +15,10 @@ class BagCubit extends Cubit<BagState> {
     DocumentSnapshot snapshot = await bagCollection.doc(uid).get();
 
     if (snapshot.exists) {
-      List<Map<String, dynamic>> existingItems =
-          (snapshot.data() as Map<String, dynamic>)['items']
-                  ?.cast<Map<String, dynamic>>() ??
-              [];
+      existingItems.clear();
+      existingItems.addAll((snapshot.data() as Map<String, dynamic>)['items']
+              ?.cast<Map<String, dynamic>>() ??
+          []);
       for (var i = 0; i < existingItems.length; i++) {
         if (existingItems[i]["id"] == id) {
           existingItems[i]["qu"] = (existingItems[i]["qu"]) + 1;
@@ -32,10 +33,8 @@ class BagCubit extends Cubit<BagState> {
 
       await bagCollection.doc(uid).set({"items": existingItems});
     } else {
-      List<Map<String, dynamic>> newItem = [
-        {"id": id, "qu": 1}
-      ];
-      await bagCollection.doc(uid).set({"items": newItem});
+      existingItems.add({"id": id, "qu": 1});
+      await bagCollection.doc(uid).set({"items": existingItems});
     }
   }
 }
