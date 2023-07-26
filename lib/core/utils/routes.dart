@@ -1,4 +1,6 @@
+import 'package:foryou/features/Product/presentation/product_view.dart';
 import 'package:foryou/features/forgetpssword/presentation/forgetpass_view.dart';
+import 'package:foryou/features/home/data/product.dart';
 import 'package:foryou/features/login/presentation/login_view.dart';
 import 'package:foryou/features/main/presentation/MainView.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +11,7 @@ abstract class AppRouter {
   static const kHomeView = '/homeView';
   static const kloginview = '/loginView';
   static const kforgetPssView = '/forgetPssView';
+  static const kproductView = '/productView';
 
   static final router = GoRouter(
     routes: [
@@ -28,6 +31,14 @@ abstract class AppRouter {
         path: kHomeView,
         builder: (context, state) => const MainView(),
       ),
+      GoRoute(
+  path: kproductView,
+  builder: (context, state) {
+    Product product = state.extra as Product;
+    print("------------------------------------------");
+    return productView(product: product);
+  },
+),
     ],
   );
 }

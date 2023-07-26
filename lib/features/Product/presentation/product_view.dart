@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:foryou/core/utils/routes.dart';
 import 'package:foryou/core/widget/customElevationButtom.dart';
 import 'package:foryou/core/widget/rattingRow.dart';
 import 'package:foryou/features/Product/presentation/widget/productImage.dart';
 import 'package:foryou/features/Product/presentation/widget/productappBar.dart';
 import 'package:foryou/features/Product/presentation/widget/titelCatogry.dart';
+import 'package:go_router/go_router.dart';
 import '../../../constant.dart';
+import '../../home/data/product.dart';
 import 'widget/saleListview.dart';
 
 // ignore: camel_case_types
 class productView extends StatelessWidget {
-  const productView({Key? key}) : super(key: key);
+  final Product product;
+  const productView({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ProductAppBar(onPressed: () {}),
+      appBar: ProductAppBar(
+          onPressedarrow: () => context.pop(), onPressedSearch: () {}),
       backgroundColor: kPrimaryColor,
       body: Column(
         children: [
@@ -23,22 +28,22 @@ class productView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  const productImage(),
+                  productImage(images: product.images),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * .03,
                   ),
                   ListTile(
-                    title: Text("H&M",
+                    title: Text(product.title,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
                             fontSize: 24)),
-                    subtitle: Text("Short black dress",
+                    subtitle: Text(product.brand,
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w400,
                             fontSize: 11)),
-                    trailing: Text("\$19.99",
+                    trailing: Text("\$ ${product.price}",
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
@@ -46,16 +51,21 @@ class productView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
-                    child: RatingRow(rating: 4, ratingNum: 10, iconSize: 18),
+                    child: RatingRow(
+                        rating: product.rating.toInt(),
+                        ratingNum: product.stock,
+                        iconSize: 18),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
-                        "Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 11)),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(product.description,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11)),
+                    ),
                   ),
                   titelcatogrey(
                     titel: "You can also like this",

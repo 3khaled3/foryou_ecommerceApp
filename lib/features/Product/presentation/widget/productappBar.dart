@@ -3,17 +3,17 @@
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
-AppBar ProductAppBar({required onPressed}) {
+AppBar ProductAppBar({required onPressedarrow,required onPressedSearch}) {
   return AppBar(
     leading: IconButton(
-        onPressed: () {},
+        onPressed: onPressedarrow,
         icon: const Icon(
           Icons.arrow_back_ios_new,
           color: Colors.black,
         )),
     actions: [
       IconButton(
-          onPressed: onPressed,
+          onPressed: onPressedSearch,
           icon: const Icon(
             Icons.search,
             color: Colors.black,
