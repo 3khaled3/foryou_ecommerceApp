@@ -9,7 +9,7 @@ abstract class BagState extends Equatable {
 
 class BagInitial extends BagState {}
 
-
+class Waittingg extends BagState{}
 class Waitting extends BagState{}
 
 class Success extends BagState{}

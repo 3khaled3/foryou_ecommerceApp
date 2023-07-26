@@ -52,7 +52,7 @@ class homeCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height * .29,
       width: MediaQuery.of(context).size.width,
       imageProvider: CachedNetworkImageProvider(
-          categoriesProductmap["${categorieslist[i]}"][1].thumbnail),
+          categoriesProductmap["${categorieslist[i]}"][0].thumbnail),
       title: Text(
         categorieslist[i],
         style: const TextStyle(

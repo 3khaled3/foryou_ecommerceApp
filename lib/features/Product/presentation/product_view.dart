@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/utils/Cubits/BagCubit/bag_cubit.dart';
+import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/core/widget/customElevationButtom.dart';
 import 'package:foryou/core/widget/rattingRow.dart';
 import 'package:foryou/features/Product/presentation/widget/productImage.dart';
@@ -78,12 +79,19 @@ class productView extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-                width: double.infinity,
-                child: customElevationButtom(
-                    text: "ADD TO CART", onPressed: () async {await BlocProvider.of<BagCubit>(context).AddToBag(product.id);})),
-          ),
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                  width: double.infinity,
+                  child: BlocBuilder<BagCubit, BagState>(
+                    builder: (context, state) {
+                      return state is Waittingg? buildCircleIndicator(): customElevationButtom(
+                          text: "ADD TO CART",
+                          onPressed: () async {
+                            await BlocProvider.of<BagCubit>(context)
+                                .AddToBag(product.id, context);
+                          });
+                    },
+                  ))),
         ],
       ),
     );

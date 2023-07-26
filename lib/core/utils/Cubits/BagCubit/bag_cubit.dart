@@ -10,6 +10,7 @@ part 'bag_state.dart';
 class BagCubit extends Cubit<BagState> {
   BagCubit() : super(BagInitial());
   List<Map<String, dynamic>> existingItems = [];
+  List<Map<String, dynamic>> bagList = [];
   existingItem() async {
     CollectionReference bagCollection =
         FirebaseFirestore.instance.collection('bag');
@@ -25,22 +26,29 @@ class BagCubit extends Cubit<BagState> {
   }
 
   // ignore: non_constant_identifier_names
-  AddToBag(id) async {
+  AddToBag(id,context) async {
+    emit(Waittingg());
+    bagList.clear();
+    
+    existingItems.clear();
     CollectionReference bagCollection =
         FirebaseFirestore.instance.collection('bag');
     final uid = FirebaseAuth.instance.currentUser!.uid;
     DocumentSnapshot snapshot = await bagCollection.doc(uid).get();
-
+////////////
     if (snapshot.exists) {
-      existingItems.clear();
       existingItems.addAll((snapshot.data() as Map<String, dynamic>)['items']
               ?.cast<Map<String, dynamic>>() ??
           []);
       for (var i = 0; i < existingItems.length; i++) {
         if (existingItems[i]["id"] == id) {
+          print("11111111111111111");
           existingItems[i]["qu"] = (existingItems[i]["qu"]) + 1;
-        } else {
-          if ((i + 1) == existingItems.length) {
+          break;
+        } else if ((i + 1) == existingItems.length) {
+          {
+            print("${existingItems.length}");
+            print("22222222222222222222");
             Map<String, dynamic> newItem = {"id": id, "qu": 1};
             existingItems.add(newItem);
             break;
@@ -53,20 +61,27 @@ class BagCubit extends Cubit<BagState> {
       existingItems.add({"id": id, "qu": 1});
       await bagCollection.doc(uid).set({"items": existingItems});
     }
+    updataBagList(context);
+    emit(Success());
   }
 
-  bool x = false;
-  Stream<List<Map<String, dynamic>>> getBag(context) async* {
+  Stream<void> getBag(context) async* {
+    bagList.clear();
+    await existingItem();
     emit(Waitting());
-    List<Map<String, dynamic>> bagList = [];
-    try {
-       await existingItem();
-    if (!x) {
-      await BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts();
-      x = true;
-    }
 
-    
+    try {
+      await BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts();
+
+      updataBagList(context);
+      // yield; // Emit an empty event to signify the completion of the stream
+    } catch (e) {
+      emit(Error(e.toString()));
+    }
+  }
+
+  void updataBagList(context) {
+    bagList.clear();
     final categoriesProductmap =
         BlocProvider.of<ApiCubit>(context).categoriesProduct;
     final bagid = existingItems;
@@ -88,11 +103,5 @@ class BagCubit extends Cubit<BagState> {
         }
       }
     }
-   
-    } catch (e) { emit(Error(e.toString()));
-    yield bagList; 
-      
-    }
-   // Yield the bagList instead of returning it
   }
 }

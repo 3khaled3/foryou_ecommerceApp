@@ -50,9 +50,7 @@ class homeView extends StatelessWidget {
                           titelcatogrey(
                             titel: categorieslist[index],
                             onPressed: () async {
-                              // print("555555555555555555555");
-                              // await BlocProvider.of<ApiCubit>(context).fetchcategoriesImage();
-                              // print(BlocProvider.of<ApiCubit>(context).categories);
+             
                             },
                           ),
                           saleListView(
