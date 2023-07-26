@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foryou/core/utils/Cubits/BagCubit/bag_cubit.dart';
 import 'package:foryou/core/utils/Cubits/userCubit/user_cubit.dart';
 import 'package:foryou/core/utils/routes.dart';
 import 'dart:async';
@@ -34,6 +35,9 @@ Future<void> main() async {
       ),
       BlocProvider(
         create: (context) => ApiCubit(),
+      ),
+       BlocProvider(
+        create: (context) => BagCubit(),
       ),
     ],
     child: MaterialApp.router(

@@ -17,5 +17,5 @@ class Success extends ApiState{}
 class Error extends ApiState{
   final String errorMessage;
 
-  Error(this.errorMessage);
+  const Error(this.errorMessage);
 }
