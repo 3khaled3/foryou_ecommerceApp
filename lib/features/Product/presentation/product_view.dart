@@ -34,17 +34,17 @@ class productView extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(product.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
                             fontSize: 24)),
                     subtitle: Text(product.brand,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w400,
                             fontSize: 11)),
                     trailing: Text("\$ ${product.price}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
                             fontSize: 24)),
@@ -71,7 +71,7 @@ class productView extends StatelessWidget {
                     titel: "You can also like this",
                     onPressed: () {},
                   ),
-                  saleListView(),
+                  saleListView(category: product.category),
                 ],
               ),
             ),
