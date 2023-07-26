@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foryou/core/utils/routes.dart';
 import 'package:foryou/core/widget/customElevationButtom.dart';
 import 'package:foryou/core/widget/rattingRow.dart';
 import 'package:foryou/features/Product/presentation/widget/productImage.dart';

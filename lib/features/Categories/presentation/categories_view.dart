@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foryou/core/utils/Cubits/Apicubit/api_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../constant.dart';
-import '../../../core/utils/Cubits/cubit/api_cubit.dart';
 import '../../../core/widget/customElevationButtom.dart';
 import 'widget/CategoriesListView.dart';
 import 'widget/appbar.dart';

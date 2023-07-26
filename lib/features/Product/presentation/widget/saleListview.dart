@@ -1,9 +1,9 @@
-import 'package:bloc/bloc.dart';
+// ignore_for_file: file_names, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/ProdactWidget/saleItem.dart';
-import 'package:foryou/core/utils/Cubits/cubit/api_cubit.dart';
-
+import 'package:foryou/core/utils/Cubits/Apicubit/api_cubit.dart';
 
 class saleListView extends StatelessWidget {
   final String category;
@@ -14,7 +14,7 @@ class saleListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final products= BlocProvider.of<ApiCubit>(context).categoriesProduct;
+    final products = BlocProvider.of<ApiCubit>(context).categoriesProduct;
     return Row(
       children: [
         Expanded(
@@ -23,10 +23,12 @@ class saleListView extends StatelessWidget {
             width: 170,
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
-              itemCount:products[category].length,
+              itemCount: products[category].length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return SaleItem(product: products[category][index],);
+                return SaleItem(
+                  product: products[category][index],
+                );
               },
             ),
           ),

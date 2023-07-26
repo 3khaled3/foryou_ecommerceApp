@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/core/utils/routes.dart';
@@ -6,7 +8,6 @@ import 'package:foryou/features/home/data/product.dart';
 import 'package:go_router/go_router.dart';
 import '../widget/rattingRow.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:sqflite/sqflite.dart';
 
 class SaleItem extends StatelessWidget {
   final Product product;
@@ -19,8 +20,7 @@ class SaleItem extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8, bottom: 8, right: 4, left: 4),
       child: GestureDetector(
         onTap: () {
-          GoRouter.of(context)
-              .push(AppRouter.kproductView, extra:  product);
+          GoRouter.of(context).push(AppRouter.kproductView, extra: product);
         },
         child: Stack(
           children: [

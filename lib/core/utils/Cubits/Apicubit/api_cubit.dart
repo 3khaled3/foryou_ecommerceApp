@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-
 import '../../../../features/home/data/product.dart';
-import 'package:retry/retry.dart';
 part 'api_state.dart';
 
 class ApiCubit extends Cubit<ApiState> {

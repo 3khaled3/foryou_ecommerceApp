@@ -3,16 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/utils/Cubits/userCubit/user_cubit.dart';
 import 'package:foryou/core/utils/routes.dart';
-import 'package:foryou/core/widget/customTextFaild.dart';
-import 'package:hive/hive.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
-import 'core/utils/Cubits/cubit/api_cubit.dart';
-
+import 'core/utils/Cubits/Apicubit/api_cubit.dart';
 import 'firebase_options.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'mmmmmm.dart';
 
 late List<CameraDescription> cameras;
 

@@ -1,14 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api, file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/features/Categories/presentation/categories_view.dart';
 import 'package:foryou/features/Favorite/presentation/Favorite_view.dart';
 import 'package:foryou/features/home/presentation/home_view.dart';
-import 'package:shimmer/shimmer.dart';
-
-import '../../../core/utils/Cubits/cubit/api_cubit.dart';
 import '../../Bag/presentation/Bag_view.dart';
 import '../../Profil/presentation/profil_View.dart';
 
