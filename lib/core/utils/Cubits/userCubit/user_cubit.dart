@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart';
+
+import '../Apicubit/api_cubit.dart';
 part 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
@@ -44,7 +47,7 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  login() async {
+  login(context) async {
     try {
       emit(Waitting());
       if (emailAddress != null && emailAddress != null) {
@@ -52,6 +55,7 @@ class UserCubit extends Cubit<UserState> {
             .signInWithEmailAndPassword(
                 email: emailAddress!, password: password!);
         if (credential.user!.emailVerified == true) {
+          await BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts();
           emit(Success());
           box.put('emailAddress', emailAddress);
           box.put('password', password);

@@ -13,7 +13,9 @@ class BagView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return BlocBuilder<BagCubit, BagState>(builder: (context, state) {
+      
+              return  StreamBuilder(
         stream: BlocProvider.of<BagCubit>(context).getBag(context),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -26,8 +28,7 @@ class BagView extends StatelessWidget {
             final bagList = BlocProvider.of<BagCubit>(context).bagList;
             print(
                 "*********************************************************************");
-            return BlocBuilder<BagCubit, BagState>(builder: (context, state) {
-              return Scaffold(
+            return Scaffold(
                 backgroundColor: kPrimaryColor,
                 appBar: BagViewAppBar(),
                 body: Column(
@@ -40,7 +41,13 @@ class BagView extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 8),
-                            child: BagItem(item: bagList[index]),
+                            child: BagItem(plusonTap: () async {
+                            await  BlocProvider.of<BagCubit>(context).plus(bagList[index]["product"].id);
+                            }, minusonTap: () {
+                              
+                            }, delonTap: () {
+                              
+                            }, item:bagList[index]),
                           );
                         },
                       ),
@@ -50,8 +57,5 @@ class BagView extends StatelessWidget {
                 ),
                 //
               );
-            });
-          }
-        });
-  }
-}
+            }});
+          });}}

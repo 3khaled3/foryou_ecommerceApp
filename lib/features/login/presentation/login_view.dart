@@ -10,7 +10,6 @@ import '../../../core/utils/indicator.dart';
 import '../../../core/widget/SnakePar.dart';
 import '../../../core/widget/arrowAppBar.dart';
 import '../../../core/widget/customElevationButtom.dart';
-import '../../../core/widget/customTextFaild.dart';
 import '../../../core/widget/googlebuttom.dart';
 import '../../../core/widget/headertext.dart';
 import '../../../core/widget/textbuttom.dart';
@@ -27,103 +26,105 @@ class loginView extends StatelessWidget {
     GlobalKey<FormState> Kform = GlobalKey();
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        return state is Waitting
-            ? const Indicator()
-            : Scaffold(
-                backgroundColor: kPrimaryColor,
-                appBar: arrowappbar(onPressed: () {
-                  GoRouter.of(context).pop();
-                }),
-                body: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Form(
-                      key: Kform,
-                      child: Column(
-                        children: [
-                          headerText(titel: "Login"),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * .1,
-                          ),
-                          customTextfaildd(
-                            labelText: "Email",
-                            controller: emaillController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your Email';
-                              } else {
-                                BlocProvider.of<UserCubit>(context)
-                                    .emailAddress = value;
-                                return null;
-                              }
-                            },
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          customTextfaildd(
-                            labelText: "Password",
-                            controller: passwordlController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your Password';
-                              } else {
-                                BlocProvider.of<UserCubit>(context).password =
-                                    value;
-                                return null;
-                              }
-                            },
-                          ),
-                          textbuttom(
-                              text: "Forget Your password?",
-                              onPressed: () {
-                                GoRouter.of(context)
-                                    .push(AppRouter.kforgetPssView);
-                              }),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: customElevationButtom(
-                                text: "LOGIN",
-                                onPressed: () async {
-                                  if (Kform.currentState!.validate()) {
-                                    await BlocProvider.of<UserCubit>(context)
-                                        .login();
-
-                                    final state =
-                                        BlocProvider.of<UserCubit>(context)
-                                            .state;
-
-                                    if (state is Success) {
-                                      showSnackbarMessage(
-                                        context,
-                                        "Success",
-                                        Colors.green,
-                                      );
-                                      GoRouter.of(context)
-                                          .push(AppRouter.kHomeView);
-                                    } else if (state is Error) {
-                                      final errorMessage = (state).errorMessage;
-                                      showSnackbarMessage(
-                                          context, errorMessage, Colors.red);
-                                    }
+        return state is Waitting            
+                ? const Indicator()
+                : Scaffold(
+                    backgroundColor: kPrimaryColor,
+                    appBar: arrowappbar(onPressed: () {
+                      GoRouter.of(context).pop();
+                    }),
+                    body: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Form(
+                          key: Kform,
+                          child: Column(
+                            children: [
+                              headerText(titel: "Login"),
+                              SizedBox(
+                                height: MediaQuery.sizeOf(context).height * .1,
+                              ),
+                              customTextfaildd(
+                                labelText: "Email",
+                                controller: emaillController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter your Email';
+                                  } else {
+                                    BlocProvider.of<UserCubit>(context)
+                                        .emailAddress = value;
+                                    return null;
                                   }
-                                }),
+                                },
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              customTextfaildd(
+                                labelText: "Password",
+                                controller: passwordlController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter your Password';
+                                  } else {
+                                    BlocProvider.of<UserCubit>(context)
+                                        .password = value;
+                                    return null;
+                                  }
+                                },
+                              ),
+                              textbuttom(
+                                  text: "Forget Your password?",
+                                  onPressed: () {
+                                    GoRouter.of(context)
+                                        .push(AppRouter.kforgetPssView);
+                                  }),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: customElevationButtom(
+                                    text: "LOGIN",
+                                    onPressed: () async {
+                                      if (Kform.currentState!.validate()) {
+                                        await BlocProvider.of<UserCubit>(
+                                                context)
+                                            .login(context);
+                                        final state =
+                                            BlocProvider.of<UserCubit>(context)
+                                                .state;
+                                        if (state is Success) {
+                                          
+                                          showSnackbarMessage(
+                                            context,
+                                            "Success",
+                                            Colors.green,
+                                          );
+                                          GoRouter.of(context)
+                                              .push(AppRouter.kHomeView);
+                                              
+                                        } else if (state is Error) {
+                                          final errorMessage =
+                                              (state).errorMessage;
+                                          showSnackbarMessage(context,
+                                              errorMessage, Colors.red);
+                                        }
+                                      }
+                                    }),
+                              ),
+                              SizedBox(
+                                height: MediaQuery.sizeOf(context).height * .2,
+                              ),
+                              const Text("Or login with"),
+                              googlebuttom(onPressed: () {})
+                            ],
                           ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * .2,
-                          ),
-                          const Text("Or login with"),
-                          googlebuttom(onPressed: () {})
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              );
+                  );
       },
     );
   }

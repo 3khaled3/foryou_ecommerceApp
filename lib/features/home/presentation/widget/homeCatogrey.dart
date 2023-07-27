@@ -1,23 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:foryou/core/utils/indicator.dart';
 import 'package:image_card/image_card.dart';
 
 class HomeCategory extends StatelessWidget {
   final List categorieslist;
   final Map categoriesProductmap;
-  const HomeCategory(
-      {super.key,
-      required this.categorieslist,
-      required this.categoriesProductmap});
+  const HomeCategory({
+    super.key,
+    required this.categorieslist,
+    required this.categoriesProductmap,
+  });
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> items = [];
-    for (var i = 0; i < categoriesProductmap.length; i++) {
+    for (var i = 0; i < categorieslist.length; i++) {
       items.add(homeCard(
-          categoriesProductmap: categoriesProductmap,
-          categorieslist: categorieslist,
-          i: i));
+        categoriesProductmap: categoriesProductmap,
+        categorieslist: categorieslist,
+        i: i,
+      ));
     }
 
     return SafeArea(
@@ -33,7 +37,6 @@ class HomeCategory extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class homeCard extends StatelessWidget {
   const homeCard({
     super.key,
@@ -48,6 +51,10 @@ class homeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!categoriesProductmap.containsKey(categorieslist[i])) {
+      return buildCircleIndicator();
+    }
+
     return TransparentImageCard(
       height: MediaQuery.of(context).size.height * .29,
       width: MediaQuery.of(context).size.width,

@@ -9,7 +9,10 @@ import '../widget/CustomcircleIconButtom.dart';
 // ignore: camel_case_types
 class BagItem extends StatelessWidget {
   final Map<String, dynamic> item;
-  const BagItem({
+  final void Function()? plusonTap;
+  final void Function()? minusonTap;
+  final void Function()? delonTap;
+  const BagItem({required this.plusonTap,required this.minusonTap,required this.delonTap,
     required this.item,
     super.key,
   });
@@ -87,7 +90,7 @@ class BagItem extends StatelessWidget {
                     children: [
                       circleIconButtom(
                         icon: LineIcons.plus,
-                        onTap: () {},
+                        onTap: plusonTap,
                       ),
                       const SizedBox(
                         width: 10,
@@ -102,11 +105,11 @@ class BagItem extends StatelessWidget {
                       ),
                       circleIconButtom(
                         icon: LineIcons.minus,
-                        onTap: () {},
+                        onTap: minusonTap,
                       ),
                       const Spacer(),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: delonTap,
                           icon: const Icon(
                             Icons.delete,
                             color: Color.fromARGB(111, 0, 0, 0),

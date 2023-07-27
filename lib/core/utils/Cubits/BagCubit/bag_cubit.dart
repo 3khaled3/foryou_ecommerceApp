@@ -26,10 +26,10 @@ class BagCubit extends Cubit<BagState> {
   }
 
   // ignore: non_constant_identifier_names
-  AddToBag(id,context) async {
+  AddToBag(id, context) async {
     emit(Waittingg());
     bagList.clear();
-    
+
     existingItems.clear();
     CollectionReference bagCollection =
         FirebaseFirestore.instance.collection('bag');
@@ -42,7 +42,6 @@ class BagCubit extends Cubit<BagState> {
           []);
       for (var i = 0; i < existingItems.length; i++) {
         if (existingItems[i]["id"] == id) {
-          print("11111111111111111");
           existingItems[i]["qu"] = (existingItems[i]["qu"]) + 1;
           break;
         } else if ((i + 1) == existingItems.length) {
@@ -71,8 +70,6 @@ class BagCubit extends Cubit<BagState> {
     emit(Waitting());
 
     try {
-      await BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts();
-
       updataBagList(context);
       // yield; // Emit an empty event to signify the completion of the stream
     } catch (e) {
@@ -103,5 +100,17 @@ class BagCubit extends Cubit<BagState> {
         }
       }
     }
+  }
+
+  plus(id) async {
+    emit(Waittingg());
+    for (var i = 0; i < existingItems.length; i++) {
+      if (existingItems[i]["id"] == id) {
+        existingItems[i]["qu"] = (existingItems[i]["qu"]) + 1;
+        break;
+      }
+    }
+    await  FirebaseFirestore.instance.collection('bag').doc( FirebaseAuth.instance.currentUser!.uid).set({"items": existingItems});
+    emit(Success());
   }
 }

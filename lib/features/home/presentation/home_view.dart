@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/utils/Cubits/Apicubit/api_cubit.dart';
+import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/features/home/presentation/widget/homeCatogrey.dart';
 import 'package:foryou/features/home/presentation/widget/titelCatogry.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../../constant.dart';
 import 'widget/saleListview.dart';
 
@@ -13,22 +13,14 @@ class homeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<void>(
-        future: BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Shimmer.fromColors(
-                baseColor: Colors.white,
-                highlightColor: Colors.grey,
-                child: Scaffold());
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text("Error loading data"),
-            );
-          } else {
             final categoriesProductmap =
                 BlocProvider.of<ApiCubit>(context).categoriesProduct;
             List categorieslist = BlocProvider.of<ApiCubit>(context).categories;
+            if (categoriesProductmap.isEmpty||categorieslist.isEmpty) {
+      // Return a placeholder or an empty container, or handle the situation accordingly
+      return Indicator();
+    }else 
+            
             return Scaffold(
               backgroundColor: kPrimaryColor,
               body: SingleChildScrollView(
@@ -68,6 +60,7 @@ class homeView extends StatelessWidget {
               ),
             );
           }
-        });
-  }
-}
+        }
+        // );
+//   }
+// }

@@ -23,10 +23,13 @@ class Indicator extends StatelessWidget {
 
  buildCircleIndicator() {
     return
+       // ignore: avoid_unnecessary_containers
        Container(
-          child:LoadingAnimationWidget.flickr(
-      leftDotColor: Colors.blue,
-      rightDotColor: Colors.red,
-      size: 20,
-    ),);
+          child:Center(
+            child: LoadingAnimationWidget.flickr(
+                leftDotColor: Colors.blue,
+                rightDotColor: Colors.red,
+                size: 20,
+              ),
+          ),);
   }
