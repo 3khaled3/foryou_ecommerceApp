@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class titelcatogrey extends StatelessWidget {
   const titelcatogrey({
     required this.titel,
-
     required this.onPressed,
     super.key,
   });

@@ -2,7 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:foryou/core/utils/indicator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_card/image_card.dart';
+
+import '../../../../core/utils/routes.dart';
 
 class HomeCategory extends StatelessWidget {
   final List categorieslist;
@@ -55,33 +58,37 @@ class homeCard extends StatelessWidget {
       return buildCircleIndicator();
     }
 
-    return TransparentImageCard(
-      height: MediaQuery.of(context).size.height * .29,
-      width: MediaQuery.of(context).size.width,
-      imageProvider: CachedNetworkImageProvider(
-          categoriesProductmap["${categorieslist[i]}"][0].thumbnail),
-      title: Text(
-        categorieslist[i],
-        style: const TextStyle(
-          color: Color.fromARGB(0, 255, 255, 255),
-          fontWeight: FontWeight.bold,
-          fontSize: 34,
+    return GestureDetector(onTap: () {
+      GoRouter.of(context).push(AppRouter.kallproductsView,extra: categorieslist[i]);
+    },
+      child: TransparentImageCard(
+        height: MediaQuery.of(context).size.height * .29,
+        width: MediaQuery.of(context).size.width,
+        imageProvider: CachedNetworkImageProvider(
+            categoriesProductmap["${categorieslist[i]}"][0].thumbnail),
+        title: Text(
+          categorieslist[i],
+          style: const TextStyle(
+            color: Color.fromARGB(0, 255, 255, 255),
+            fontWeight: FontWeight.bold,
+            fontSize: 34,
+          ),
         ),
-      ),
-      description: Text(
-        categorieslist[i],
-        style: const TextStyle(
-          color: Color.fromARGB(0, 255, 255, 255),
-          fontWeight: FontWeight.bold,
-          fontSize: 34,
+        description: Text(
+          categorieslist[i],
+          style: const TextStyle(
+            color: Color.fromARGB(0, 255, 255, 255),
+            fontWeight: FontWeight.bold,
+            fontSize: 34,
+          ),
         ),
-      ),
-      footer: Text(
-        categorieslist[i],
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 34,
+        footer: Text(
+          categorieslist[i],
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 34,
+          ),
         ),
       ),
     );

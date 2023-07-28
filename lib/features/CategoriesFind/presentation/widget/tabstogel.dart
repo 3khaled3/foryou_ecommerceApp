@@ -42,8 +42,13 @@ class tabstogel extends StatelessWidget {
                 radius: 100,
                 onTap: (value) {
                   GoRouter.of(context).pop();
-                  GoRouter.of(context).push(AppRouter.kallproductsView,
+                  if (value==0) {
+                     GoRouter.of(context).push(AppRouter.kallproductsView,
+                      extra: "All");
+                  }else {
+                    GoRouter.of(context).push(AppRouter.kallproductsView,
                       extra: categorieslist[(value - 1)]);
+                  }
                 },
                 backgroundColor: Colors.red,
                 unselectedBackgroundColor: Colors.black,
