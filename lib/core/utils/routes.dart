@@ -5,6 +5,7 @@ import 'package:foryou/features/login/presentation/login_view.dart';
 import 'package:foryou/features/main/presentation/MainView.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/CategoriesFind/presentation/categoriesFind_view.dart';
 import '../../features/register/presentation/register_view.dart';
 
 abstract class AppRouter {
@@ -12,7 +13,7 @@ abstract class AppRouter {
   static const kloginview = '/loginView';
   static const kforgetPssView = '/forgetPssView';
   static const kproductView = '/productView';
-
+static const kallproductsView='/productsView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -32,13 +33,19 @@ abstract class AppRouter {
         builder: (context, state) => const MainView(),
       ),
       GoRoute(
-  path: kproductView,
-  builder: (context, state) {
-    Product product = state.extra as Product;
-    print("------------------------------------------");
-    return productView(product: product);
-  },
-),
+        path: kproductView,
+        builder: (context, state) {
+          Product product = state.extra as Product;
+          return productView(product: product);
+        },
+      ),
+      GoRoute(
+        path: kallproductsView,
+        builder: (context, state) {
+          String product = state.extra as String;
+          return CategoriesFindView(Categorie: product);
+        },
+      ),
     ],
   );
 }

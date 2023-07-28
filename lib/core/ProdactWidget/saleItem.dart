@@ -35,6 +35,7 @@ class SaleItem extends StatelessWidget {
                   children: [
                     Center(
                         child: CachedNetworkImage(
+                      fit: BoxFit.cover,
                       width: 162,
                       height: 184,
                       imageUrl: product.thumbnail,

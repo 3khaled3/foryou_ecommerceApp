@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
-AppBar CategorieFindAppBar() {
+AppBar CategorieFindAppBar({required titel,required ontapArrow}) {
   return AppBar(
     leading: IconButton(
-        onPressed: () {},
+        onPressed: ontapArrow,
         icon: const Icon(
           Icons.arrow_back_ios_new,
           color: Colors.black,
@@ -21,9 +21,9 @@ AppBar CategorieFindAppBar() {
     elevation: .5,
     backgroundColor: Colors.white,
     centerTitle: true,
-    title: const Text(
-      "tops",
-      style: TextStyle(
+    title:  Text(
+     titel,
+      style: const TextStyle(
           fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
     ),
   );
