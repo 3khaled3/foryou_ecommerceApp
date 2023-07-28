@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../features/home/data/product.dart';
 import '../Apicubit/api_cubit.dart';
 part 'bag_state.dart';
 
@@ -25,78 +26,79 @@ class BagCubit extends Cubit<BagState> {
     }
   }
 
-  // ignore: non_constant_identifier_names
-  AddToBag(id, context) async {
+  Future<void> addToBag(id, context) async {
     emit(Waittingg());
-    bagList.clear();
-
-    existingItems.clear();
     CollectionReference bagCollection =
         FirebaseFirestore.instance.collection('bag');
     final uid = FirebaseAuth.instance.currentUser!.uid;
     DocumentSnapshot snapshot = await bagCollection.doc(uid).get();
-////////////
+    List<Map<String, dynamic>> existingItems = [];
     if (snapshot.exists) {
       existingItems.addAll((snapshot.data() as Map<String, dynamic>)['items']
-              ?.cast<Map<String, dynamic>>() ??
+              ?.cast<Map<String, dynamic>>()
+              .toList() ??
           []);
+
+      bool itemFound = false;
+
       for (var i = 0; i < existingItems.length; i++) {
         if (existingItems[i]["id"] == id) {
-          existingItems[i]["qu"] = (existingItems[i]["qu"]) + 1;
+          // Item found, update quantity
+          existingItems[i]["qu"] = (existingItems[i]["qu"] ?? 1) + 1;
+          itemFound = true; // Set the flag to true
           break;
-        } else if ((i + 1) == existingItems.length) {
-          {
-            print("${existingItems.length}");
-            print("22222222222222222222");
-            Map<String, dynamic> newItem = {"id": id, "qu": 1};
-            existingItems.add(newItem);
-            break;
-          }
         }
+      }
+      // If item with the specified ID was not found, add the new item to the bag
+      if (!itemFound) {
+        existingItems.add({"id": id, "qu": 1});
       }
 
       await bagCollection.doc(uid).set({"items": existingItems});
     } else {
+      // Document not found, add a new item to the bag
       existingItems.add({"id": id, "qu": 1});
       await bagCollection.doc(uid).set({"items": existingItems});
     }
-    updataBagList(context);
+
+    await updataBagList(context);
+
     emit(Success());
   }
 
-  Stream<void> getBag(context) async* {
+  getBag(context) async {
     bagList.clear();
     await existingItem();
     emit(Waitting());
 
     try {
-      updataBagList(context);
-      // yield; // Emit an empty event to signify the completion of the stream
+      await updataBagList(context);
     } catch (e) {
       emit(Error(e.toString()));
     }
   }
 
-  void updataBagList(context) {
+  updataBagList(context) {
     bagList.clear();
     final categoriesProductmap =
         BlocProvider.of<ApiCubit>(context).categoriesProduct;
-    final bagid = existingItems;
     List categorieslist = BlocProvider.of<ApiCubit>(context).categories;
-    for (var z = 0; z < bagid.length; z++) {
-      print("z$z");
-      for (var i = 0; i < categorieslist.length; i++) {
-        for (var b = 0;
-            b < categoriesProductmap["${categorieslist[i]}"].length;
-            b++) {
-          if (categoriesProductmap["${categorieslist[i]}"][b].id ==
-              bagid[z]["id"]) {
-            print(b);
-            bagList.add({
-              "product": categoriesProductmap["${categorieslist[i]}"][b],
-              "qu": bagid[z]["qu"]
-            });
-          }
+
+    List<Product> productlist = [];
+    for (var i = 0; i < categoriesProductmap.length; i++) {
+      {
+        for (var x = 0;
+            x < categoriesProductmap["${categorieslist[i]}"].length;
+            x++) {
+          productlist.add(categoriesProductmap["${categorieslist[i]}"][x]);
+        }
+      }
+    }
+    for (var x = 0; x < existingItems.length; x++) {
+      for (var i = 0; i < productlist.length; i++) {
+        if (productlist[i].id == existingItems[x]["id"]) {
+          bagList
+              .add({"product": productlist[i], "qu": existingItems[x]["qu"]});
         }
       }
     }
@@ -110,7 +112,10 @@ class BagCubit extends Cubit<BagState> {
         break;
       }
     }
-    await  FirebaseFirestore.instance.collection('bag').doc( FirebaseAuth.instance.currentUser!.uid).set({"items": existingItems});
+    await FirebaseFirestore.instance
+        .collection('bag')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({"items": existingItems});
     emit(Success());
   }
 }

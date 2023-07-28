@@ -13,8 +13,6 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
-            
     final categoriesProductmap =
         BlocProvider.of<ApiCubit>(context).categoriesProduct;
     List categorieslist = BlocProvider.of<ApiCubit>(context).categories;
@@ -32,12 +30,14 @@ class CategoriesView extends StatelessWidget {
                 child: customElevationButtom(
                   text: "VIEW ALL ITEMS",
                   onPressed: () {
-                    GoRouter.of(context).push(AppRouter.kallproductsView,extra: "All");
+                    GoRouter.of(context)
+                        .push(AppRouter.kallproductsView, extra: "All");
                   },
                 ),
               ),
-               CategoriesListView(  categoriesProductmap: categoriesProductmap,
-              categorieslist: categorieslist),
+              CategoriesListView(
+                  categoriesProductmap: categoriesProductmap,
+                  categorieslist: categorieslist),
             ],
           ),
         ),

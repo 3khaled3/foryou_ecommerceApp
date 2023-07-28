@@ -88,7 +88,7 @@ class productView extends StatelessWidget {
                           text: "ADD TO CART",
                           onPressed: () async {
                             await BlocProvider.of<BagCubit>(context)
-                                .AddToBag(product.id, context);
+                                .addToBag(product.id , context);
                           });
                     },
                   ))),

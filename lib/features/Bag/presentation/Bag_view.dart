@@ -14,21 +14,20 @@ class BagView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BagCubit, BagState>(builder: (context, state) {
-      
-              return  StreamBuilder(
-        stream: BlocProvider.of<BagCubit>(context).getBag(context),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
+      return FutureBuilder(
+          future: BlocProvider.of<BagCubit>(context).getBag(context),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Something went wrong');
+            }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: const Indicator());
-          } else {
-            final bagList = BlocProvider.of<BagCubit>(context).bagList;
-            print(
-                "*********************************************************************");
-            return Scaffold(
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return buildCircleIndicator();
+            } else {
+              final bagList = BlocProvider.of<BagCubit>(context).bagList;
+              print(
+                  "*********************************************************************");
+              return Scaffold(
                 backgroundColor: kPrimaryColor,
                 appBar: BagViewAppBar(),
                 body: Column(
@@ -41,21 +40,25 @@ class BagView extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 8),
-                            child: BagItem(plusonTap: () async {
-                            await  BlocProvider.of<BagCubit>(context).plus(bagList[index]["product"].id);
-                            }, minusonTap: () {
-                              
-                            }, delonTap: () {
-                              
-                            }, item:bagList[index]),
+                            child: BagItem(
+                                plusonTap: () async {
+                                  await BlocProvider.of<BagCubit>(context)
+                                      .plus(bagList[index]["product"].id);
+                                },
+                                minusonTap: () {},
+                                delonTap: () {},
+                                item: bagList[index]),
                           );
                         },
                       ),
                     ),
-                    checkoutPronoCode(),
+                    const checkoutPronoCode(),
                   ],
                 ),
                 //
               );
-            }});
-          });}}
+            }
+          });
+    });
+  }
+}
