@@ -25,8 +25,10 @@ class BagView extends StatelessWidget {
               return buildCircleIndicator();
             } else {
               final bagList = BlocProvider.of<BagCubit>(context).bagList;
-              print(
-                  "*********************************************************************");
+              double? price=0;
+              for (var i = 0; i < bagList.length; i++) {
+              price=(price!+  (bagList[i]["product"].price)*(bagList[i]["qu"])) as double?;
+              }             
               return Scaffold(
                 backgroundColor: kPrimaryColor,
                 appBar: BagViewAppBar(),
@@ -52,7 +54,7 @@ class BagView extends StatelessWidget {
                         },
                       ),
                     ),
-                    const checkoutPronoCode(),
+                     checkoutPronoCode(prices: price!),
                   ],
                 ),
                 //
