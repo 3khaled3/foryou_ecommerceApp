@@ -1,9 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../features/home/data/product.dart';
 import '../Apicubit/api_cubit.dart';
 part 'bag_state.dart';
@@ -12,6 +10,7 @@ class BagCubit extends Cubit<BagState> {
   BagCubit() : super(BagInitial());
   List<Map<String, dynamic>> existingItems = [];
   List<Map<String, dynamic>> bagList = [];
+  //updataCurrantItem
   existingItem() async {
     CollectionReference bagCollection =
         FirebaseFirestore.instance.collection('bag');
@@ -26,6 +25,7 @@ class BagCubit extends Cubit<BagState> {
     }
   }
 
+//add New Item or plus current item
   Future<void> addToBag(id, context) async {
     emit(Waittingg());
     CollectionReference bagCollection =
@@ -66,6 +66,7 @@ class BagCubit extends Cubit<BagState> {
     emit(Success());
   }
 
+//get Current Item
   getBag(context) async {
     bagList.clear();
     await existingItem();
@@ -78,6 +79,7 @@ class BagCubit extends Cubit<BagState> {
     }
   }
 
+//updataBagList
   updataBagList(context) {
     bagList.clear();
     final categoriesProductmap =
@@ -104,6 +106,7 @@ class BagCubit extends Cubit<BagState> {
     }
   }
 
+//plus current item
   plus(id) async {
     emit(Waittingg());
     for (var i = 0; i < existingItems.length; i++) {
@@ -118,18 +121,19 @@ class BagCubit extends Cubit<BagState> {
         .set({"items": existingItems});
     emit(Success());
   }
+
+//minus current item
   minus(id) async {
     emit(Waittingg());
     for (var i = 0; i < existingItems.length; i++) {
       if (existingItems[i]["id"] == id) {
-        if ( existingItems[i]["qu"]==1) {
+        if (existingItems[i]["qu"] == 1) {
           existingItems[i].clear();
           break;
-        }else {
+        } else {
           existingItems[i]["qu"] = (existingItems[i]["qu"]) - 1;
-           break;
+          break;
         }
-
       }
     }
     await FirebaseFirestore.instance
@@ -138,13 +142,14 @@ class BagCubit extends Cubit<BagState> {
         .set({"items": existingItems});
     emit(Success());
   }
+
+//del current item
   del(id) async {
     emit(Waittingg());
     for (var i = 0; i < existingItems.length; i++) {
       if (existingItems[i]["id"] == id) {
-        
-          existingItems[i].clear();
-          break;
+        existingItems[i].clear();
+        break;
       }
     }
     await FirebaseFirestore.instance
