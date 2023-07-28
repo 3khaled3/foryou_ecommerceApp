@@ -118,4 +118,39 @@ class BagCubit extends Cubit<BagState> {
         .set({"items": existingItems});
     emit(Success());
   }
+  minus(id) async {
+    emit(Waittingg());
+    for (var i = 0; i < existingItems.length; i++) {
+      if (existingItems[i]["id"] == id) {
+        if ( existingItems[i]["qu"]==1) {
+          existingItems[i].clear();
+          break;
+        }else {
+          existingItems[i]["qu"] = (existingItems[i]["qu"]) - 1;
+           break;
+        }
+
+      }
+    }
+    await FirebaseFirestore.instance
+        .collection('bag')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({"items": existingItems});
+    emit(Success());
+  }
+  del(id) async {
+    emit(Waittingg());
+    for (var i = 0; i < existingItems.length; i++) {
+      if (existingItems[i]["id"] == id) {
+        
+          existingItems[i].clear();
+          break;
+      }
+    }
+    await FirebaseFirestore.instance
+        .collection('bag')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({"items": existingItems});
+    emit(Success());
+  }
 }

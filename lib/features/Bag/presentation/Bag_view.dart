@@ -47,8 +47,14 @@ class BagView extends StatelessWidget {
                                   await BlocProvider.of<BagCubit>(context)
                                       .plus(bagList[index]["product"].id);
                                 },
-                                minusonTap: () {},
-                                delonTap: () {},
+                                minusonTap: () async {
+                                   await BlocProvider.of<BagCubit>(context)
+                                      .minus(bagList[index]["product"].id);
+                                },
+                                delonTap: () async {
+                                    await BlocProvider.of<BagCubit>(context)
+                                      .del(bagList[index]["product"].id);
+                                },
                                 item: bagList[index]),
                           );
                         },
