@@ -25,7 +25,7 @@ class productImage extends StatelessWidget {
                 imageUrl: item,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     buildCircleIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                errorWidget: (context, url, error) => buildCircleIndicator(),
               ),
             ))
         .toList();
