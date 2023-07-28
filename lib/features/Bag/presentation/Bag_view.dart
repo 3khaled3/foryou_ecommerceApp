@@ -25,10 +25,12 @@ class BagView extends StatelessWidget {
               return buildCircleIndicator();
             } else {
               final bagList = BlocProvider.of<BagCubit>(context).bagList;
-              double? price=0;
+              double? price = 0;
               for (var i = 0; i < bagList.length; i++) {
-              price=(price!+  (bagList[i]["product"].price)*(bagList[i]["qu"])) as double?;
-              }             
+                price = (price! +
+                        (bagList[i]["product"].price) * (bagList[i]["qu"]))
+                    as double?;
+              }
               return Scaffold(
                 backgroundColor: kPrimaryColor,
                 appBar: BagViewAppBar(),
@@ -48,11 +50,11 @@ class BagView extends StatelessWidget {
                                       .plus(bagList[index]["product"].id);
                                 },
                                 minusonTap: () async {
-                                   await BlocProvider.of<BagCubit>(context)
+                                  await BlocProvider.of<BagCubit>(context)
                                       .minus(bagList[index]["product"].id);
                                 },
                                 delonTap: () async {
-                                    await BlocProvider.of<BagCubit>(context)
+                                  await BlocProvider.of<BagCubit>(context)
                                       .del(bagList[index]["product"].id);
                                 },
                                 item: bagList[index]),
@@ -60,7 +62,7 @@ class BagView extends StatelessWidget {
                         },
                       ),
                     ),
-                     checkoutPronoCode(prices: price!),
+                    checkoutPronoCode(prices: price!),
                   ],
                 ),
                 //
