@@ -3,7 +3,8 @@ import 'package:foryou/core/widget/customElevationButtom.dart';
 
 // ignore: camel_case_types
 class checkoutPronoCode extends StatelessWidget {
-  const checkoutPronoCode({super.key});
+  final double prices;
+  const checkoutPronoCode({super.key, required this.prices});
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +37,19 @@ class checkoutPronoCode extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("TOTAL PAYMENT :",
+                  const Text("TOTAL PAYMENT :",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  Text("\$ 198.00",
-                      style: TextStyle(
+                  Text("\$ $prices",
+                      style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 18))
