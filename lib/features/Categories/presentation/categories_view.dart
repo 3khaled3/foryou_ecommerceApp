@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/utils/Cubits/Apicubit/api_cubit.dart';
+import 'package:foryou/core/utils/routes.dart';
+import 'package:go_router/go_router.dart';
 import '../../../constant.dart';
 import '../../../core/widget/customElevationButtom.dart';
 import 'widget/CategoriesListView.dart';
@@ -29,7 +31,9 @@ class CategoriesView extends StatelessWidget {
                 width: double.infinity,
                 child: customElevationButtom(
                   text: "VIEW ALL ITEMS",
-                  onPressed: () {},
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouter.kallproductsView,extra: "All");
+                  },
                 ),
               ),
                CategoriesListView(  categoriesProductmap: categoriesProductmap,

@@ -31,6 +31,13 @@ class CategoriesFindView extends StatelessWidget {
             x++) {
           productlist.add(categoriesProductmap["${categorieslist[i]}"][x]);
         }
+      }else if( "All" == Categorie){
+         for (var x = 0;
+            x < categoriesProductmap["${categorieslist[i]}"].length;
+            x++) {
+          productlist.add(categoriesProductmap["${categorieslist[i]}"][x]);
+        }
+
       }
     }
 
