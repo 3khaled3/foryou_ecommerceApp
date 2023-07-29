@@ -105,7 +105,8 @@ class SaleItem extends StatelessWidget {
                             : Icons.favorite_border_rounded,
                         onTap: () async {
                           await favCubit.addTofav(product.id, context);
-                          await BlocProvider.of<FavCubit>(context)
+                          // ignore: use_build_context_synchronously
+                          await favCubit
                               .getfav(context);
                         })),
                 Positioned(

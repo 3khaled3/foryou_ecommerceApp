@@ -103,20 +103,4 @@ class FavCubit extends Cubit<FavState> {
       }
     }
   }
-
-//del current item
-  del(id) async {
-    emit(Waitting());
-    for (var i = 0; i < existingItems.length; i++) {
-      if (existingItems[i]["id"] == id) {
-        existingItems[i].clear();
-        break;
-      }
-    }
-    await FirebaseFirestore.instance
-        .collection('fav')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .set({"items": existingItems});
-    emit(Success());
-  }
 }
