@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/utils/Cubits/userCubit/user_cubit.dart';
 import 'package:foryou/core/utils/routes.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import '../../../constant.dart';
 import '../../../core/utils/indicator.dart';
 import '../../../core/widget/SnakePar.dart';
@@ -16,8 +17,20 @@ import '../../../core/widget/textbuttom.dart';
 import '../../../mmmmmm.dart';
 
 // ignore: camel_case_types
-class loginView extends StatelessWidget {
+class loginView extends StatefulWidget {
   const loginView({super.key});
+
+  @override
+  State<loginView> createState() => _loginViewState();
+}
+
+class _loginViewState extends State<loginView> {
+  @override
+  void initState() {
+    loginAuto(context);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,106 +39,114 @@ class loginView extends StatelessWidget {
     GlobalKey<FormState> Kform = GlobalKey();
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        return state is Waitting            
-                ? const Indicator()
-                : Scaffold(
-                    backgroundColor: kPrimaryColor,
-                    appBar: arrowappbar(onPressed: () {
-                      GoRouter.of(context).pop();
-                    }),
-                    body: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: Form(
-                          key: Kform,
-                          child: Column(
-                            children: [
-                              headerText(titel: "Login"),
-                              SizedBox(
-                                height: MediaQuery.sizeOf(context).height * .1,
-                              ),
-                              customTextfaildd(
-                                labelText: "Email",
-                                controller: emaillController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your Email';
-                                  } else {
-                                    BlocProvider.of<UserCubit>(context)
-                                        .emailAddress = value;
-                                    return null;
-                                  }
-                                },
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              customTextfaildd(
-                                labelText: "Password",
-                                controller: passwordlController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your Password';
-                                  } else {
-                                    BlocProvider.of<UserCubit>(context)
-                                        .password = value;
-                                    return null;
-                                  }
-                                },
-                              ),
-                              textbuttom(
-                                  text: "Forget Your password?",
-                                  onPressed: () {
-                                    GoRouter.of(context)
-                                        .push(AppRouter.kforgetPssView);
-                                  }),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              SizedBox(
-                                width: double.infinity,
-                                child: customElevationButtom(
-                                    text: "LOGIN",
-                                    onPressed: () async {
-                                      if (Kform.currentState!.validate()) {
-                                        await BlocProvider.of<UserCubit>(
-                                                context)
-                                            .login(context);
-                                        final state =
-                                            BlocProvider.of<UserCubit>(context)
-                                                .state;
-                                        if (state is Success) {
-                                          
-                                          showSnackbarMessage(
-                                            context,
-                                            "Success",
-                                            Colors.green,
-                                          );
-                                          GoRouter.of(context)
-                                              .push(AppRouter.kHomeView);
-                                              
-                                        } else if (state is Error) {
-                                          final errorMessage =
-                                              (state).errorMessage;
-                                          showSnackbarMessage(context,
-                                              errorMessage, Colors.red);
-                                        }
-                                      }
-                                    }),
-                              ),
-                              SizedBox(
-                                height: MediaQuery.sizeOf(context).height * .2,
-                              ),
-                              const Text("Or login with"),
-                              googlebuttom(onPressed: () {})
-                            ],
+        return state is Waitting
+            ? const Indicator()
+            : Scaffold(
+                backgroundColor: kPrimaryColor,
+                appBar: arrowappbar(onPressed: () {
+                  GoRouter.of(context).pop();
+                }),
+                body: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Form(
+                      key: Kform,
+                      child: Column(
+                        children: [
+                          headerText(titel: "Login"),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * .1,
                           ),
-                        ),
+                          customTextfaildd(
+                            labelText: "Email",
+                            controller: emaillController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your Email';
+                              } else {
+                                BlocProvider.of<UserCubit>(context)
+                                    .emailAddress = value;
+                                return null;
+                              }
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          customTextfaildd(
+                            labelText: "Password",
+                            controller: passwordlController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your Password';
+                              } else {
+                                BlocProvider.of<UserCubit>(context).password =
+                                    value;
+                                return null;
+                              }
+                            },
+                          ),
+                          textbuttom(
+                              text: "Forget Your password?",
+                              onPressed: () {
+                                GoRouter.of(context)
+                                    .push(AppRouter.kforgetPssView);
+                              }),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: customElevationButtom(
+                                text: "LOGIN",
+                                onPressed: () async {
+                                  if (Kform.currentState!.validate()) {
+                                    await BlocProvider.of<UserCubit>(context)
+                                        .login(context);
+                                    final state =
+                                        BlocProvider.of<UserCubit>(context)
+                                            .state;
+                                    if (state is Success) {
+                                      showSnackbarMessage(
+                                        context,
+                                        "Success",
+                                        Colors.green,
+                                      );
+                                      GoRouter.of(context)
+                                          .push(AppRouter.kHomeView);
+                                    } else if (state is Error) {
+                                      final errorMessage = (state).errorMessage;
+                                      showSnackbarMessage(
+                                          context, errorMessage, Colors.red);
+                                    }
+                                  }
+                                }),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * .2,
+                          ),
+                          const Text("Or login with"),
+                          googlebuttom(onPressed: () {})
+                        ],
                       ),
                     ),
-                  );
+                  ),
+                ),
+              );
       },
     );
+  }
+}
+
+Future<void> loginAuto(BuildContext context) async {
+  final box = Hive.box('myBox');
+  final storedEmail = box.get('emailAddress');
+  final storedPassword = box.get('password');
+
+  if (storedEmail != null && storedPassword != null) {
+    BlocProvider.of<UserCubit>(context).emailAddress = storedEmail;
+    BlocProvider.of<UserCubit>(context).password = storedPassword;
+    await BlocProvider.of<UserCubit>(context).loginAuto(context);
   }
 }
