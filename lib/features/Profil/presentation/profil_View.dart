@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foryou/core/utils/routes.dart';
+import 'package:go_router/go_router.dart';
 import '../../../constant.dart';
 import 'widget/ProfileAppBar.dart';
 import 'widget/ProfileButtoms.dart';
@@ -35,7 +37,11 @@ class ProfilView extends StatelessWidget {
                 Suptitle: "Reviews for 4 items",
                 onPressed: () {}),
             profileButtoms(
-                title: "Settings", Suptitle: " password", onPressed: () {}),
+                title: "Settings",
+                Suptitle: " password",
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kSettingsView);
+                }),
           ],
         ),
       ),

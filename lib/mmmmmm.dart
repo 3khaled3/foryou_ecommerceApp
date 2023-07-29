@@ -4,7 +4,7 @@ class customTextfaildd extends StatelessWidget {
   final String labelText;
   final Function(String)? onChanged;
   final TextEditingController controller;
-
+  final String inithialText;
   final String? Function(String?)? validator;
   const customTextfaildd({
     Key? key,
@@ -12,12 +12,12 @@ class customTextfaildd extends StatelessWidget {
     required this.controller,
     this.onChanged,
     this.validator,
+    this.inithialText="",
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Set the initial value here
-
+controller.text = inithialText;
     return SizedBox(
       // height: 60,
       child: Stack(
@@ -67,9 +67,9 @@ class customTextfaildd extends StatelessWidget {
 
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(left: 12, right: 12),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     // borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Colors.white),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   filled: true,
                   fillColor: Colors.white,

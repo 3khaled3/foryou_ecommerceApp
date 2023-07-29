@@ -2,7 +2,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/ProdactWidget/Bagitem.dart';
 import 'package:foryou/core/utils/Cubits/BagCubit/bag_cubit.dart';
-import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/features/Bag/presentation/widget/checkoutPronoCode.dart';
 import '../../../constant.dart';
 import '../../../core/widget/Animate.dart';
@@ -23,7 +22,7 @@ class BagView extends StatelessWidget {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return animate(text: " ", image:"assets/animation_shop.json");
+              return const animate(text: " ", image:"assets/animation_shop.json");
             } else {
               final bagList = BlocProvider.of<BagCubit>(context).bagList;
               double? price = 0;

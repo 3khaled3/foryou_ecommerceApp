@@ -18,14 +18,14 @@ class animate extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Spacer(flex: 2),
+          const Spacer(flex: 2),
           Lottie.asset(image),
-          Spacer(),
+          const Spacer(),
            Text(
             text,
             style: const TextStyle(fontSize: 30, fontFamily: 'Pacifico'),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

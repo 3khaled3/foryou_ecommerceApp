@@ -31,7 +31,7 @@ class SettingsView extends StatelessWidget {
                 onPressed: () {
                   showbottomSheet(
                       context: context,
-                      widget: const passwoedSettingBottomSheetView());
+                      widget:  passwoedSettingBottomSheetView());
                 }),
           ],
         ));

@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:foryou/features/Profil/presentation/widget/provileImage.dart';
 
 class UserInformation extends StatefulWidget {
   const UserInformation({super.key});
@@ -11,25 +13,25 @@ class UserInformation extends StatefulWidget {
 class _UserInformationState extends State<UserInformation> {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return  Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
         children: [
-          CircleAvatar(
-              radius: 50, backgroundImage: AssetImage("assets/styles/3.jpg")),
-          SizedBox(height: 16),
+         buildProfileImage(),
+          const SizedBox(height: 16),
           Text(
-            "Khaled Tarek",
-            style: TextStyle(
+             "${FirebaseAuth.instance.currentUser!
+                        .displayName}",
+            style: const TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
           ),
-          SizedBox(height: 8),
-          Text("dev.khaledtarek@gmail.com",
-              style: TextStyle(
+          const SizedBox(height: 8),
+          Text(FirebaseAuth.instance.currentUser!.email.toString(),
+              style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 14,
                   fontWeight: FontWeight.w500)),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
         ],
       ),
     );

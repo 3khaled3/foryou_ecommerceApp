@@ -6,7 +6,9 @@ import 'package:foryou/features/main/presentation/MainView.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/CategoriesFind/presentation/categoriesFind_view.dart';
+import '../../features/Settings/presentation/Settings_view.dart';
 import '../../features/register/presentation/register_view.dart';
+import 'indicator.dart';
 
 abstract class AppRouter {
   static const kHomeView = '/homeView';
@@ -14,14 +16,17 @@ abstract class AppRouter {
   static const kforgetPssView = '/forgetPssView';
   static const kproductView = '/productView';
 static const kallproductsView='/productsView';
+static const kSettingsView='/SettingsView';
+static const kIndicator='/Indicator';
+
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: '/',
+        path: kloginview,
         builder: (context, state) => const registerView(),
       ),
       GoRoute(
-        path: kloginview,
+        path: '/',
         builder: (context, state) => const loginView(),
       ),
       GoRoute(
@@ -31,6 +36,10 @@ static const kallproductsView='/productsView';
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const MainView(),
+      ),
+      GoRoute(
+        path: kIndicator,
+        builder: (context, state) => const Indicator(),
       ),
       GoRoute(
         path: kproductView,
@@ -44,6 +53,13 @@ static const kallproductsView='/productsView';
         builder: (context, state) {
           String product = state.extra as String;
           return CategoriesFindView(Categorie: product);
+        },
+      ),
+       GoRoute(
+        path: kSettingsView,
+        builder: (context, state) {
+          
+          return  SettingsView();
         },
       ),
     ],
