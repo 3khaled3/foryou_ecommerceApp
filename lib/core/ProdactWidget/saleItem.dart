@@ -106,8 +106,7 @@ class SaleItem extends StatelessWidget {
                         onTap: () async {
                           await favCubit.addTofav(product.id, context);
                           // ignore: use_build_context_synchronously
-                          await favCubit
-                              .getfav(context);
+                          
                         })),
                 Positioned(
                   left: 13,

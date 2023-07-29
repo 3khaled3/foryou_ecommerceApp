@@ -11,6 +11,7 @@ class FavCubit extends Cubit<FavState> {
   FavCubit() : super(FavInitial());
 
   List<dynamic> existingItems = [];
+  List<dynamic> allProduct = [];
   List<Map<String, dynamic>> favList = [];
   //updataCurrantItem
   existingItem() async {
@@ -58,16 +59,15 @@ class FavCubit extends Cubit<FavState> {
       });
       await favCollection.doc(uid).set({"items": existingItems});
     }
-    await updatafavList(context);
+    await getfav(context);
     emit(Success());
   }
 
 //get Current Item
   getfav(context) async {
+    emit(Waitting());
     favList.clear();
     await existingItem();
-    emit(Waitting());
-
     try {
       await updatafavList(context);
       emit(Success());
@@ -78,6 +78,7 @@ class FavCubit extends Cubit<FavState> {
 
 //updatafavList
   updatafavList(context) {
+// emit(Waitting());
     favList.clear();
     final categoriesProductmap =
         BlocProvider.of<ApiCubit>(context).categoriesProduct;
@@ -93,6 +94,7 @@ class FavCubit extends Cubit<FavState> {
         }
       }
     }
+    allProduct.addAll(productlist);
     for (var x = 0; x < existingItems.length; x++) {
       for (var i = 0; i < productlist.length; i++) {
         if (productlist[i].id == existingItems[x]["id"]) {
@@ -102,5 +104,8 @@ class FavCubit extends Cubit<FavState> {
         }
       }
     }
+  // emit(Waitting());
+
   }
+  
 }
