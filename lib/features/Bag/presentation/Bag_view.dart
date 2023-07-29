@@ -5,6 +5,7 @@ import 'package:foryou/core/utils/Cubits/BagCubit/bag_cubit.dart';
 import 'package:foryou/core/utils/indicator.dart';
 import 'package:foryou/features/Bag/presentation/widget/checkoutPronoCode.dart';
 import '../../../constant.dart';
+import '../../../core/widget/Animate.dart';
 import 'widget/BagViewAppBar.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class BagView extends StatelessWidget {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return buildCircleIndicator();
+              return animate(text: " ", image:"assets/animation_shop.json");
             } else {
               final bagList = BlocProvider.of<BagCubit>(context).bagList;
               double? price = 0;
@@ -33,7 +34,7 @@ class BagView extends StatelessWidget {
               return Scaffold(
                 backgroundColor: kPrimaryColor,
                 appBar: BagViewAppBar(),
-                body: Column(
+                body:bagList.isEmpty? const animate(text: 'Bag is Empty',image: "assets/animation_lknfp4bn.json",): Column(
                   children: [
                     Expanded(
                       child: ListView.builder(
