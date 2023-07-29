@@ -12,6 +12,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart';
 
 import '../Apicubit/api_cubit.dart';
+import '../FavCubit/fav_cubit.dart';
 part 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
@@ -56,6 +57,7 @@ class UserCubit extends Cubit<UserState> {
                 email: emailAddress!, password: password!);
         if (credential.user!.emailVerified == true) {
           await BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts();
+          await BlocProvider.of<FavCubit>(context).getfav(context);
           emit(Success());
           box.put('emailAddress', emailAddress);
           box.put('password', password);

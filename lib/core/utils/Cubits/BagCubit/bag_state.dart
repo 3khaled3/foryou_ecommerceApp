@@ -8,7 +8,7 @@ abstract class BagState extends Equatable {
 }
 
 class BagInitial extends BagState {}
-
+//wait plus
 class Waittingg extends BagState{}
 class Waitting extends BagState{}
 

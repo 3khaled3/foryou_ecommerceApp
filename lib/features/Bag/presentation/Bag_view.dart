@@ -28,8 +28,7 @@ class BagView extends StatelessWidget {
               double? price = 0;
               for (var i = 0; i < bagList.length; i++) {
                 price = (price! +
-                        (bagList[i]["product"].price) * (bagList[i]["qu"]))
-                    as double?;
+                        (bagList[i]["product"].price) * (bagList[i]["qu"]));
               }
               return Scaffold(
                 backgroundColor: kPrimaryColor,

@@ -7,6 +7,7 @@ import 'package:foryou/core/utils/routes.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
 import 'core/utils/Cubits/Apicubit/api_cubit.dart';
+import 'core/utils/Cubits/FavCubit/fav_cubit.dart';
 import 'firebase_options.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -38,6 +39,9 @@ Future<void> main() async {
       ),
        BlocProvider(
         create: (context) => BagCubit(),
+      ),
+       BlocProvider(
+        create: (context) => FavCubit(),
       ),
     ],
     child: MaterialApp.router(
