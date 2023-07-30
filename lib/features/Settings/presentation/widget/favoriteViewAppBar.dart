@@ -1,7 +1,5 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
 // ignore: non_constant_identifier_names
 AppBar settingsViewAppBar({ required onPressed}) {
   return AppBar(

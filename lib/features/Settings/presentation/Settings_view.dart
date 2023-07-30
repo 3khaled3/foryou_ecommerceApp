@@ -27,10 +27,8 @@ class SettingsView extends StatelessWidget {
           children: [
             SettingsButtoms(
                 title: "Personal Information",
-                Suptitle: "Name, Date of Birth",
+                Suptitle: "Edit user name",
                 onPressed: () {
-                      final userCubit = BlocProvider.of<UserCubit>(context);
-
                   showbottomSheet(
                       context: context,
                       widget: BlocBuilder<UserCubit, UserState>(

@@ -38,7 +38,7 @@ class ProfilView extends StatelessWidget {
                 onPressed: () {}),
             profileButtoms(
                 title: "Settings",
-                Suptitle: " password",
+                Suptitle: " password & UserName",
                 onPressed: () {
                   GoRouter.of(context).push(AppRouter.kSettingsView);
                 }),

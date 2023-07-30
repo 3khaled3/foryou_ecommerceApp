@@ -1,4 +1,5 @@
-// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
+
+// ignore_for_file: camel_case_types, duplicate_ignore, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,6 @@ import '../../../core/widget/headertext.dart';
 import '../../../core/widget/textbuttom.dart';
 import '../../../mmmmmm.dart';
 
-// ignore: camel_case_types
 class loginView extends StatefulWidget {
   const loginView({super.key});
 
@@ -91,7 +91,6 @@ class _loginViewState extends State<loginView> {
                                 GoRouter.of(context)
                                     .push(AppRouter.kforgetPssView);
                               }),
-                         
                           const SizedBox(
                             height: 8,
                           ),
@@ -121,7 +120,7 @@ class _loginViewState extends State<loginView> {
                                   }
                                 }),
                           ),
-                           textbuttom(
+                          textbuttom(
                               text: "Create new accunt",
                               onPressed: () {
                                 GoRouter.of(context).push(AppRouter.kloginview);
@@ -152,11 +151,13 @@ Future<void> loginAuto(BuildContext context) async {
     BlocProvider.of<UserCubit>(context).password = storedPassword;
     try {
       await BlocProvider.of<UserCubit>(context).login(context);
-      if (State is Success) {
+      final state = BlocProvider.of<UserCubit>(context).state;
+      if (state is Success) {
         GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
       }
+    // ignore: empty_catches
     } catch (e) {
-      print(e.toString());
+    
     }
   }
 }
