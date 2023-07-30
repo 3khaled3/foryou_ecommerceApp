@@ -98,16 +98,16 @@ class SaleItem extends StatelessWidget {
                 Positioned(
                     left: 131,
                     height: 370,
-                    child: circleIconButtom(
-                        iconColor: fav ? Colors.red : Colors.grey,
-                        icon: fav
-                            ? Icons.favorite
-                            : Icons.favorite_border_rounded,
-                        onTap: () async {
-                          await favCubit.addTofav(product.id, context);
-                          // ignore: use_build_context_synchronously
-                          
-                        })),
+                    child: 
+                        circleIconButtom(
+                            iconColor: fav ? Colors.red : Colors.grey,
+                            icon: fav
+                                ? Icons.favorite
+                                : Icons.favorite_border_rounded,
+                            onTap: () async {
+                              await favCubit.addTofav(product.id, context);
+                              // ignore: use_build_context_synchronously
+                            })),
                 Positioned(
                   left: 13,
                   top: 13,

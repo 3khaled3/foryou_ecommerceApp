@@ -60,7 +60,6 @@ class FavCubit extends Cubit<FavState> {
       await favCollection.doc(uid).set({"items": existingItems});
     }
     await getfav(context);
-    emit(Success());
   }
 
 //get Current Item
