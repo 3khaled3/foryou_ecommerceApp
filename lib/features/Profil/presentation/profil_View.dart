@@ -1,9 +1,12 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foryou/core/utils/Cubits/userCubit/user_cubit.dart';
 import 'package:foryou/core/utils/routes.dart';
 import 'package:go_router/go_router.dart';
 import '../../../constant.dart';
+import '../../../core/widget/SnakePar.dart';
 import 'widget/ProfileAppBar.dart';
 import 'widget/ProfileButtoms.dart';
 import 'widget/ProfileInfo.dart';
@@ -14,8 +17,17 @@ class ProfilView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PeofileAppBar(onPressed: () {}),
+    return  Scaffold(
+      appBar: PeofileAppBar(onPressed: () async {
+        await BlocProvider.of<UserCubit>(context).signOut();
+        final state = BlocProvider.of<UserCubit>(context).state;
+        if (state is Success) {
+          GoRouter.of(context).pushReplacement(AppRouter.kregisterView);
+        } else if (state is Error) {
+          final errorMessage = (state).errorMessage;
+          showToastMessage(errorMessage, Colors.red);
+        }
+      }),
       backgroundColor: kPrimaryColor,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

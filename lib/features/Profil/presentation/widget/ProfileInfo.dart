@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foryou/core/utils/Cubits/userCubit/user_cubit.dart';
 import 'package:foryou/features/Profil/presentation/widget/provileImage.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class UserInformation extends StatefulWidget {
   const UserInformation({super.key});
@@ -17,14 +18,22 @@ class _UserInformationState extends State<UserInformation> {
   Widget build(BuildContext context) {
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        return Padding(
+        return  FirebaseAuth.instance.currentUser == null
+          ? Center(
+              child: LoadingAnimationWidget.discreteCircle(
+                  color: Colors.white,
+                  size: 70,
+                  secondRingColor: Colors.green,
+                  thirdRingColor: Colors.purple),
+            )
+          :   Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               buildProfileImage(),
               const SizedBox(height: 16),
               Text(
-                "${FirebaseAuth.instance.currentUser!.displayName}",
+                "${ FirebaseAuth.instance.currentUser!.displayName}",
                 style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,

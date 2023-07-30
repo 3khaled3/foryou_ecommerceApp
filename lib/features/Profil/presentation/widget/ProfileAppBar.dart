@@ -9,8 +9,8 @@ AppBar PeofileAppBar({required onPressed}) {
       IconButton(
           onPressed: onPressed,
           icon: const Icon(
-            Icons.search,
-            color: Colors.black,
+            Icons.output_sharp,
+            color: Colors.red,
           ))
     ],
     elevation: .5,
