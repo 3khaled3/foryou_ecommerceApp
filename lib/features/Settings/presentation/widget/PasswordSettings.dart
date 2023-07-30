@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_build_context_synchronously
+// ignore_for_file: file_names, use_build_context_synchronously, empty_catches
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -126,7 +126,6 @@ class passwoedSettingBottomSheetView extends StatelessWidget {
                       if (_formKey.currentState!.validate()) {
                         await BlocProvider.of<UserCubit>(context)
                             .updataPassword(confirmPss!);
-                        print("*********************************");
                         try {
                           final state =
                               BlocProvider.of<UserCubit>(context).state;
@@ -143,9 +142,7 @@ class passwoedSettingBottomSheetView extends StatelessWidget {
                               Colors.red,
                             );
                           }
-                        } catch (e) {
-                          print("============ ${e.toString()}");
-                        }
+                        } catch (e) {}
                       }
                     },
                   );

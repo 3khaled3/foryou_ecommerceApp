@@ -22,14 +22,14 @@ class filterBottomSheetView extends StatelessWidget {
         ),
         Row(
           children: [
-            Spacer(),
+            const Spacer(),
             Container(
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(40)),
               width: 60,
               height: 6,
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
         const SizedBox(

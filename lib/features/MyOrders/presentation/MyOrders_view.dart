@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:foryou/features/MyOrders/presentation/widget/MyOrdersAppBar.dart';
 
@@ -13,7 +15,7 @@ class MyOrdersView extends StatelessWidget {
     return Scaffold(
       appBar: MyOrdersAppBar(onPressed: () {}),
       backgroundColor: kPrimaryColor,
-      body: Column(
+      body: const Column(
         children: [Expanded(child: BuildTabBar())],
       ),
     );

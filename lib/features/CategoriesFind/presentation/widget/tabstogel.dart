@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +17,7 @@ class tabstogel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late TabController _tabController;
+    late TabController tabController;
     List categorieslist = BlocProvider.of<ApiCubit>(context).categories;
     List<Widget> taps = [];
     taps.add(const Tab(
@@ -27,7 +29,7 @@ class tabstogel extends StatelessWidget {
       ));
     }
 
-    _tabController = TabController(
+    tabController = TabController(
       length: taps.length,
       initialIndex: initial,
       vsync: Scaffold.of(context),
@@ -38,16 +40,16 @@ class tabstogel extends StatelessWidget {
         children: <Widget>[
           SafeArea(
             child: ButtonsTabBar(
-                controller: _tabController,
+                controller: tabController,
                 radius: 100,
                 onTap: (value) {
                   GoRouter.of(context).pop();
-                  if (value==0) {
-                     GoRouter.of(context).push(AppRouter.kallproductsView,
-                      extra: "All");
-                  }else {
+                  if (value == 0) {
+                    GoRouter.of(context)
+                        .push(AppRouter.kallproductsView, extra: "All");
+                  } else {
                     GoRouter.of(context).push(AppRouter.kallproductsView,
-                      extra: categorieslist[(value - 1)]);
+                        extra: categorieslist[(value - 1)]);
                   }
                 },
                 backgroundColor: Colors.red,

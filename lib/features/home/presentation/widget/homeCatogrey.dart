@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, camel_case_types
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -58,9 +60,11 @@ class homeCard extends StatelessWidget {
       return buildCircleIndicator();
     }
 
-    return GestureDetector(onTap: () {
-      GoRouter.of(context).push(AppRouter.kallproductsView,extra: categorieslist[i]);
-    },
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context)
+            .push(AppRouter.kallproductsView, extra: categorieslist[i]);
+      },
       child: TransparentImageCard(
         height: MediaQuery.of(context).size.height * .29,
         width: MediaQuery.of(context).size.width,

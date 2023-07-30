@@ -72,9 +72,7 @@ class sortBottomSheetView extends StatelessWidget {
               'Price: lowest to high',
               'Price: highest to low'
             ],
-            onToggle: (index) {
-              print('switched to: $index');
-            },
+            onToggle: (index) {},
           ),
         ),
         Padding(

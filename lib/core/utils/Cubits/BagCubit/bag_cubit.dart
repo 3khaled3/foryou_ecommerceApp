@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import 'package:equatable/equatable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,9 +26,7 @@ class BagCubit extends Cubit<BagState> {
                 ?.cast<Map<String, dynamic>>() ??
             []);
       }
-    } catch (e) {
-      print(e.toString());
-    }
+    } catch (e) {}
   }
 
 //add New Item or plus current item

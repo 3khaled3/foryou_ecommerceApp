@@ -7,8 +7,6 @@ import '../../../constant.dart';
 import '../../../core/utils/indicator.dart';
 import 'widget/favoriteViewAppBar.dart';
 import 'package:flutter/material.dart';
-import 'widget/FilterAndSortRow.dart';
-import 'widget/tabstogel.dart';
 
 // ignore: camel_case_types
 class favoriteView extends StatelessWidget {
@@ -32,8 +30,6 @@ class favoriteView extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       child: Column(
                         children: [
-                          const tabstogel(),
-                          const FilterAndSortRow(),
                           SizedBox(
                             width: MediaQuery.sizeOf(context).width,
                             child: GridView.builder(

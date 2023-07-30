@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class RatingRow extends StatelessWidget {
@@ -6,6 +8,7 @@ class RatingRow extends StatelessWidget {
   final int ratingNum;
 
   const RatingRow({
+    super.key,
     required this.rating,
     required this.ratingNum,
     this.iconSize = 24.0,
@@ -20,13 +23,13 @@ class RatingRow extends StatelessWidget {
             if (index < rating) {
               return Icon(
                 Icons.star,
-                color: Color(0xffFFBA49),
+                color: const Color(0xffFFBA49),
                 size: iconSize,
               );
             } else {
               return Icon(
                 Icons.star_border,
-                color: Color(0xffFFBA49),
+                color: const Color(0xffFFBA49),
                 size: iconSize,
               );
             }

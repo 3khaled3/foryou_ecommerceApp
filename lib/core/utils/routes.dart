@@ -59,7 +59,7 @@ static const kIndicator='/Indicator';
         path: kSettingsView,
         builder: (context, state) {
           
-          return  SettingsView();
+          return  const SettingsView();
         },
       ),
     ],

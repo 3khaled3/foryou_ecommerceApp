@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +10,14 @@ class CategorieItem extends StatelessWidget {
   final String imageUrl;
   final String Categorie;
 
-  const CategorieItem({required this.Categorie, required this.imageUrl});
+  const CategorieItem(
+      {super.key, required this.Categorie, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kallproductsView,extra: Categorie);
+        GoRouter.of(context).push(AppRouter.kallproductsView, extra: Categorie);
       },
       child: Material(
         elevation: 1,

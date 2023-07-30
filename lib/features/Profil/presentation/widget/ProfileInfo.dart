@@ -15,30 +15,31 @@ class UserInformation extends StatefulWidget {
 class _UserInformationState extends State<UserInformation> {
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<UserCubit, UserState>(
+    return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         return Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-           buildProfileImage(),
-            const SizedBox(height: 16),
-            Text(
-               "${FirebaseAuth.instance.currentUser!
-                          .displayName}",
-              style: const TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
-            ),
-            const SizedBox(height: 8),
-            Text(FirebaseAuth.instance.currentUser!.email.toString(),
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              buildProfileImage(),
+              const SizedBox(height: 16),
+              Text(
+                "${FirebaseAuth.instance.currentUser!.displayName}",
                 style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500)),
-            const SizedBox(height: 8),
-          ],
-        ),
-      );
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+              ),
+              const SizedBox(height: 8),
+              Text(FirebaseAuth.instance.currentUser!.email.toString(),
+                  style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500)),
+              const SizedBox(height: 8),
+            ],
+          ),
+        );
       },
     );
   }

@@ -1,5 +1,4 @@
-
-// ignore_for_file: camel_case_types, duplicate_ignore, non_constant_identifier_names
+// ignore_for_file: camel_case_types, duplicate_ignore, non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -155,9 +154,7 @@ Future<void> loginAuto(BuildContext context) async {
       if (state is Success) {
         GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
       }
-    // ignore: empty_catches
-    } catch (e) {
-    
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 }
