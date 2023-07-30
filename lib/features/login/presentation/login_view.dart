@@ -30,7 +30,9 @@ class loginView extends StatelessWidget {
             ? const Indicator()
             : Scaffold(
                 backgroundColor: kPrimaryColor,
-                appBar: arrowappbar(onPressed: () {}),
+                appBar: arrowappbar(onPressed: () {
+                  GoRouter.of(context).pop();
+                }),
                 body: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: SingleChildScrollView(
@@ -107,11 +109,6 @@ class loginView extends StatelessWidget {
                                   }
                                 }),
                           ),
-                          textbuttom(
-                              text: "Create new accunt",
-                              onPressed: () {
-                                GoRouter.of(context).push(AppRouter.kloginview);
-                              }),
                           SizedBox(
                             height: MediaQuery.sizeOf(context).height * .2,
                           ),
@@ -142,9 +139,13 @@ Future<void> loginAuto(BuildContext context) async {
       if (state is Success) {
         GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
       } else if (state is Error) {
-        GoRouter.of(context).pushReplacement(AppRouter.kloginview);
+        GoRouter.of(context).pushReplacement(AppRouter.kregisterView);
       }
       // ignore: empty_catches
     } catch (e) {}
+  } else {
+    Future.delayed(const Duration(seconds: 2)).then((value) {
+      GoRouter.of(context).pushReplacement(AppRouter.kregisterView);
+    });
   }
 }

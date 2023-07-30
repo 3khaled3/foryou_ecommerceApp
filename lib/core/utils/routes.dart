@@ -19,16 +19,16 @@ abstract class AppRouter {
 static const kallproductsView='/productsView';
 static const kSettingsView='/SettingsView';
 static const kIndicator='/Indicator';
-static const kSplasher='/kSplasher';
+static const kregisterView='/kSplasher';
 
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: kloginview,
+        path: kregisterView,
         builder: (context, state) => const registerView(),
       ),
       GoRoute(
-        path: kSplasher,
+        path: kloginview,
         builder: (context, state) => const loginView(),
       ),
       GoRoute(
