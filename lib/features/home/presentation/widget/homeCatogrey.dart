@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:foryou/core/utils/indicator.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_card/image_card.dart';
-
 import '../../../../core/utils/routes.dart';
 
 class HomeCategory extends StatelessWidget {
@@ -61,40 +59,65 @@ class homeCard extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () {
-        GoRouter.of(context)
-            .push(AppRouter.kallproductsView, extra: categorieslist[i]);
-      },
-      child: TransparentImageCard(
-        height: MediaQuery.of(context).size.height * .29,
-        width: MediaQuery.of(context).size.width,
-        imageProvider: CachedNetworkImageProvider(
-            categoriesProductmap["${categorieslist[i]}"][0].thumbnail),
-        title: Text(
-          categorieslist[i],
-          style: const TextStyle(
-            color: Color.fromARGB(0, 255, 255, 255),
-            fontWeight: FontWeight.bold,
-            fontSize: 34,
-          ),
-        ),
-        description: Text(
-          categorieslist[i],
-          style: const TextStyle(
-            color: Color.fromARGB(0, 255, 255, 255),
-            fontWeight: FontWeight.bold,
-            fontSize: 34,
-          ),
-        ),
-        footer: Text(
-          categorieslist[i],
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 34,
-          ),
-        ),
-      ),
-    );
+        onTap: () {
+          GoRouter.of(context)
+              .push(AppRouter.kallproductsView, extra: categorieslist[i]);
+        },
+        child: Container(
+            height: MediaQuery.of(context).size.height * 0.29,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: CachedNetworkImage(
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) =>
+                              buildCircleIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      imageUrl: categoriesProductmap["${categorieslist[i]}"][0]
+                          .thumbnail,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.29,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      gradient: LinearGradient(
+                        colors: [
+                          const Color(0xff575757).withOpacity(0),
+                          const Color(0xff000000),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                    child: const SizedBox(
+                        height: double.infinity, width: double.infinity),
+                  ),
+                ),
+                Positioned.fill(
+                  left: 20,
+                  top: MediaQuery.of(context).size.height * 0.22,
+                  child: Text(
+                    categorieslist[i],
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 34,
+                    ),
+                  ),
+                )
+              ],
+            )));
   }
 }
