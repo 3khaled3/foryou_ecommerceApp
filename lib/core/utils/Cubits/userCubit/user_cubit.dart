@@ -1,7 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:meta/meta.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -10,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart';
-
-import '../../routes.dart';
 import '../Apicubit/api_cubit.dart';
 import '../FavCubit/fav_cubit.dart';
 part 'user_state.dart';
@@ -46,29 +43,6 @@ class UserCubit extends Cubit<UserState> {
       }
     } catch (e) {
       emit(Error(e.toString()));
-    }
-  }
-loginAuto(context) async {
-    try {
-      emit(Waitting());
-      if (emailAddress != null && emailAddress != null) {
-        await BlocProvider.of<ApiCubit>(context).fetchcategoriesProducts();
-          await BlocProvider.of<FavCubit>(context).getfav(context);
-        final credential = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-                email: emailAddress!, password: password!);
-                useraccess = credential;
-                GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-                emit(Success());
-      }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        emit(Error("No user found for that email."));
-      } else if (e.code == 'wrong-password') {
-        emit(Error("Wrong password provided for that user."));
-      } else {
-        emit(Error(e.toString()));
-      }
     }
   }
   login(context) async {
