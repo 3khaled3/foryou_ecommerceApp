@@ -73,25 +73,29 @@ final formKey = GlobalKey<FormState>();
               ),
               SizedBox(
                   width: double.infinity,
-                  child: customElevationButtom(
-                      text: "SAVE",
-                      onPressed: () async {
-                        if (formKey.currentState!.validate()) {
-                          await BlocProvider.of<UserCubit>(context)
-                              .updateDisplayName(newusername!);
-                          final state =
-                              BlocProvider.of<UserCubit>(context).state;
-                          if (state is Success) {
-                            showToastMessage(
-                              "Username has been updated",
-                              Colors.green,
-                            );
-                          } else if (state is Error) {
-                            final errorMessage = (state).errorMessage;
-                            showToastMessage(errorMessage, Colors.red);
+                  child: BlocBuilder<UserCubit, UserState>(
+                    builder: (context, state) {
+                      return customElevationButtom(
+                        text: "SAVE",
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {
+                            await BlocProvider.of<UserCubit>(context)
+                                .updateDisplayName(newusername!);
+                            // final state =
+                            //     BlocProvider.of<UserCubit>(context).state;
+                            if (state is Success) {
+                              showToastMessage(
+                                "Username has been updated",
+                                Colors.green,
+                              );
+                            } else if (state is Error) {
+                              final errorMessage = (state).errorMessage;
+                              showToastMessage(errorMessage, Colors.red);
+                            }
                           }
-                        }
-                      })),
+                        });
+                    },
+                  )),
               const SizedBox(
                 height: 14,
               ),

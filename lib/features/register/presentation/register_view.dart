@@ -33,7 +33,9 @@ class registerView extends StatelessWidget {
             ? const Indicator()
             : Scaffold(
                 backgroundColor: kPrimaryColor,
-                appBar: arrowappbar(onPressed: () {}),
+                appBar: arrowappbar(onPressed: () {
+                  GoRouter.of(context).pop();
+                }),
                 body: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: SingleChildScrollView(
@@ -94,7 +96,7 @@ class registerView extends StatelessWidget {
                           textbuttom(
                               text: "Already have an account?",
                               onPressed: () {
-                                GoRouter.of(context).push(AppRouter.kloginview);
+                  GoRouter.of(context).pop();
                               }),
                           const SizedBox(
                             height: 8,

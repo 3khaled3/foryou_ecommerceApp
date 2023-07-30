@@ -117,51 +117,51 @@ controller.text = inithialText;
 
 
 
-class customSettingTextfaild extends StatelessWidget {
-   final String labelText;
-  final Function(String)? onChanged;
-  final String inithialText;
-  final String? Function(String?)? validator;
-  const customSettingTextfaild({
-    Key? key,
-    required this.labelText,
-    this.onChanged,
-    this.validator,
-    this.inithialText="",
-  }) : super(key: key);
+// class customSettingTextfaild extends StatelessWidget {
+//    final String labelText;
+//   final Function(String)? onChanged;
+//   final String inithialText;
+//   final String? Function(String?)? validator;
+//   const customSettingTextfaild({
+//     Key? key,
+//     required this.labelText,
+//     this.onChanged,
+//     this.validator,
+//     this.inithialText="",
+//   }) : super(key: key);
 
 
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(initialValue: inithialText,
-                validator: validator,
-                onChanged: onChanged,
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextFormField(initialValue: inithialText,
+//                 validator: validator,
+//                 onChanged: onChanged,
 
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 12, right: 12),
-                  enabledBorder: const OutlineInputBorder(
-                    // borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  // fillColor: Colors.yellow,
-                  labelText: labelText,
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Colors.red),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                  labelStyle: const TextStyle(color: Colors.grey),
-                  floatingLabelBehavior: FloatingLabelBehavior.auto,
-                ),
-              ) ;
-  }
-}
+//                 decoration: InputDecoration(
+//                   contentPadding: const EdgeInsets.only(left: 12, right: 12),
+//                   enabledBorder: const OutlineInputBorder(
+//                     // borderRadius: BorderRadius.circular(8),
+//                     borderSide: BorderSide(color: Colors.white),
+//                   ),
+//                   filled: true,
+//                   fillColor: Colors.white,
+//                   // fillColor: Colors.yellow,
+//                   labelText: labelText,
+//                   errorBorder: OutlineInputBorder(
+//                     borderRadius: BorderRadius.circular(8),
+//                     borderSide: const BorderSide(color: Colors.red),
+//                   ),
+//                   border: OutlineInputBorder(
+//                     borderRadius: BorderRadius.circular(8),
+//                     borderSide: const BorderSide(color: Colors.white),
+//                   ),
+//                   focusedBorder: OutlineInputBorder(
+//                     borderRadius: BorderRadius.circular(8),
+//                     borderSide: const BorderSide(color: Colors.white),
+//                   ),
+//                   labelStyle: const TextStyle(color: Colors.grey),
+//                   floatingLabelBehavior: FloatingLabelBehavior.auto,
+//                 ),
+//               ) ;
+//   }
+// }

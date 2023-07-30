@@ -12,16 +12,20 @@ class BagCubit extends Cubit<BagState> {
   List<Map<String, dynamic>> bagList = [];
   //updataCurrantItem
   existingItem() async {
-    CollectionReference bagCollection =
-        FirebaseFirestore.instance.collection('bag');
-    final uid = FirebaseAuth.instance.currentUser!.uid;
-    DocumentSnapshot snapshot = await bagCollection.doc(uid).get();
+    try {
+      CollectionReference bagCollection =
+          FirebaseFirestore.instance.collection('bag');
+      final uid = FirebaseAuth.instance.currentUser!.uid;
+      DocumentSnapshot snapshot = await bagCollection.doc(uid).get();
 
-    if (snapshot.exists) {
-      existingItems.clear();
-      existingItems.addAll((snapshot.data() as Map<String, dynamic>)['items']
-              ?.cast<Map<String, dynamic>>() ??
-          []);
+      if (snapshot.exists) {
+        existingItems.clear();
+        existingItems.addAll((snapshot.data() as Map<String, dynamic>)['items']
+                ?.cast<Map<String, dynamic>>() ??
+            []);
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 

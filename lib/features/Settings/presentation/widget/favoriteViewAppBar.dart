@@ -1,11 +1,12 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // ignore: non_constant_identifier_names
-AppBar settingsViewAppBar() {
+AppBar settingsViewAppBar({ required onPressed}) {
   return AppBar(
     leading: IconButton(
-        onPressed: () {},
+        onPressed:  onPressed,
         icon: const Icon(
           Icons.arrow_back_ios_new,
           color: Colors.black,

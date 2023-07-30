@@ -43,9 +43,7 @@ class _loginViewState extends State<loginView> {
             ? const Indicator()
             : Scaffold(
                 backgroundColor: kPrimaryColor,
-                appBar: arrowappbar(onPressed: () {
-                  GoRouter.of(context).pop();
-                }),
+                appBar: arrowappbar(onPressed: () {}),
                 body: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: SingleChildScrollView(
@@ -93,6 +91,7 @@ class _loginViewState extends State<loginView> {
                                 GoRouter.of(context)
                                     .push(AppRouter.kforgetPssView);
                               }),
+                         
                           const SizedBox(
                             height: 8,
                           ),
@@ -109,7 +108,6 @@ class _loginViewState extends State<loginView> {
                                             .state;
                                     if (state is Success) {
                                       showToastMessage(
-                                        
                                         "Success",
                                         Colors.green,
                                       );
@@ -118,11 +116,16 @@ class _loginViewState extends State<loginView> {
                                     } else if (state is Error) {
                                       final errorMessage = (state).errorMessage;
                                       showToastMessage(
-                                           errorMessage, Colors.red);
+                                          errorMessage, Colors.red);
                                     }
                                   }
                                 }),
                           ),
+                           textbuttom(
+                              text: "Create new accunt",
+                              onPressed: () {
+                                GoRouter.of(context).push(AppRouter.kloginview);
+                              }),
                           SizedBox(
                             height: MediaQuery.sizeOf(context).height * .2,
                           ),
@@ -147,6 +150,13 @@ Future<void> loginAuto(BuildContext context) async {
   if (storedEmail != null && storedPassword != null) {
     BlocProvider.of<UserCubit>(context).emailAddress = storedEmail;
     BlocProvider.of<UserCubit>(context).password = storedPassword;
-    await BlocProvider.of<UserCubit>(context).loginAuto(context);
+    try {
+      await BlocProvider.of<UserCubit>(context).login(context);
+      if (State is Success) {
+        GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
