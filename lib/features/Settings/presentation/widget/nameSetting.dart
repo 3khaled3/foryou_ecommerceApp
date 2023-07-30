@@ -12,12 +12,12 @@ import '../../../../core/widget/SnakePar.dart';
 
 // ignore: camel_case_types
 class nameSettingBottomSheetView extends StatelessWidget {
-  const nameSettingBottomSheetView({super.key});
-
+   nameSettingBottomSheetView({super.key});
+final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     TextEditingController FullnameController = TextEditingController();
-    final formKey = GlobalKey<FormState>();
+    
     String? newusername;
     return Container(
       decoration: const BoxDecoration(
@@ -82,15 +82,13 @@ class nameSettingBottomSheetView extends StatelessWidget {
                           final state =
                               BlocProvider.of<UserCubit>(context).state;
                           if (state is Success) {
-                            showSnackbarMessage(
-                              context,
+                            showToastMessage(
                               "Username has been updated",
                               Colors.green,
                             );
                           } else if (state is Error) {
                             final errorMessage = (state).errorMessage;
-                            showSnackbarMessage(
-                                context, errorMessage, Colors.red);
+                            showToastMessage(errorMessage, Colors.red);
                           }
                         }
                       })),

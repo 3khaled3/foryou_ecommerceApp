@@ -113,15 +113,13 @@ class registerView extends StatelessWidget {
                                             .state;
 
                                     if (state is Success) {
-                                      showSnackbarMessage(
-                                        context,
+                                     showToastMessage(
                                         "Check your mail and Verifiy your account",
                                         Colors.green,
                                       );
                                     } else if (state is Error) {
                                       final errorMessage = (state).errorMessage;
-                                      showSnackbarMessage(
-                                          context, errorMessage, Colors.red);
+                                      showToastMessage(errorMessage, Colors.red);
                                     }
                                   }
                                 }),

@@ -72,15 +72,13 @@ class forgetPssView extends StatelessWidget {
                                       BlocProvider.of<UserCubit>(context).state;
 
                                   if (state is Success) {
-                                    showSnackbarMessage(
-                                      context,
+                                    showToastMessage(
                                       "Check your mail and resrt password ",
                                       Colors.green,
                                     );
                                   } else if (state is Error) {
                                     final errorMessage = (state).errorMessage;
-                                    showSnackbarMessage(
-                                        context, errorMessage, Colors.red);
+                                    showToastMessage( errorMessage, Colors.red);
                                   }
                                 }
                               }),

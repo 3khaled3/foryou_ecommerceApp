@@ -12,6 +12,7 @@ import 'firebase_options.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 
+
 late List<CameraDescription> cameras;
 
 Future<void> main() async {
@@ -26,10 +27,7 @@ Future<void> main() async {
   );
 
   cameras = await availableCameras();
-  runApp
-// (MaterialApp(home: customTextfaildd(labelText: "labelText"),));
-
-      (MultiBlocProvider(
+  runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
         create: (context) => UserCubit(),
@@ -37,16 +35,16 @@ Future<void> main() async {
       BlocProvider(
         create: (context) => ApiCubit(),
       ),
-       BlocProvider(
+      BlocProvider(
         create: (context) => BagCubit(),
       ),
-       BlocProvider(
+      BlocProvider(
         create: (context) => FavCubit(),
       ),
     ],
-    child: MaterialApp.router(
-      routerConfig: AppRouter.router,
+    child: MaterialApp.router(routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
+
     ),
   ));
 }

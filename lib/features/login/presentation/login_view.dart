@@ -108,8 +108,8 @@ class _loginViewState extends State<loginView> {
                                         BlocProvider.of<UserCubit>(context)
                                             .state;
                                     if (state is Success) {
-                                      showSnackbarMessage(
-                                        context,
+                                      showToastMessage(
+                                        
                                         "Success",
                                         Colors.green,
                                       );
@@ -117,8 +117,8 @@ class _loginViewState extends State<loginView> {
                                           .push(AppRouter.kHomeView);
                                     } else if (state is Error) {
                                       final errorMessage = (state).errorMessage;
-                                      showSnackbarMessage(
-                                          context, errorMessage, Colors.red);
+                                      showToastMessage(
+                                           errorMessage, Colors.red);
                                     }
                                   }
                                 }),

@@ -57,6 +57,7 @@ loginAuto(context) async {
         final credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
                 email: emailAddress!, password: password!);
+                useraccess = credential;
                 GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                 emit(Success());
       }
@@ -119,9 +120,7 @@ loginAuto(context) async {
   Future<void> updataPassword(String newPassword) async {
     try {
       emit(Waitting());
-      print("==================================");
       await useraccess!.user!.updatePassword(newPassword);
-      print("==================111111111111111111111111================");
       emit(Success());
       box.put('password', newPassword);
     } on FirebaseAuthException catch (e) {
