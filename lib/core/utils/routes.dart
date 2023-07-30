@@ -1,3 +1,4 @@
+import 'package:foryou/core/utils/Splash.dart';
 import 'package:foryou/features/Product/presentation/product_view.dart';
 import 'package:foryou/features/forgetpssword/presentation/forgetpass_view.dart';
 import 'package:foryou/features/home/data/product.dart';
@@ -18,6 +19,7 @@ abstract class AppRouter {
 static const kallproductsView='/productsView';
 static const kSettingsView='/SettingsView';
 static const kIndicator='/Indicator';
+static const kSplasher='/kSplasher';
 
   static final router = GoRouter(
     routes: [
@@ -26,7 +28,7 @@ static const kIndicator='/Indicator';
         builder: (context, state) => const registerView(),
       ),
       GoRoute(
-        path: '/',
+        path: kSplasher,
         builder: (context, state) => const loginView(),
       ),
       GoRoute(
@@ -40,6 +42,10 @@ static const kIndicator='/Indicator';
       GoRoute(
         path: kIndicator,
         builder: (context, state) => const Indicator(),
+      ),
+       GoRoute(
+        path: '/',
+        builder: (context, state) => const Splasher(),
       ),
       GoRoute(
         path: kproductView,

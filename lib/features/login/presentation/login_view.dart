@@ -16,20 +16,8 @@ import '../../../core/widget/headertext.dart';
 import '../../../core/widget/textbuttom.dart';
 import '../../../mmmmmm.dart';
 
-class loginView extends StatefulWidget {
+class loginView extends StatelessWidget {
   const loginView({super.key});
-
-  @override
-  State<loginView> createState() => _loginViewState();
-}
-
-class _loginViewState extends State<loginView> {
-  @override
-  void initState() {
-    loginAuto(context);
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,6 +141,8 @@ Future<void> loginAuto(BuildContext context) async {
       final state = BlocProvider.of<UserCubit>(context).state;
       if (state is Success) {
         GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+      } else if (state is Error) {
+        GoRouter.of(context).pushReplacement(AppRouter.kloginview);
       }
       // ignore: empty_catches
     } catch (e) {}
